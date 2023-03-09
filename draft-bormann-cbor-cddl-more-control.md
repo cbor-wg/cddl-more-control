@@ -14,10 +14,10 @@ keyword:
  - Concise Data Definition Language
  - Control Operator
 venue:
-  group: CBOR
-  mail: cbor@ietf.org
+  group: "Concise Binary Object Representation Maintenance and Extensions"
+  mail: "cbor@ietf.org"
   github: "cbor-wg/cddl-more-control"
-  latest: https://cbor-wg.github.io/cddl-more-control/
+  latest: "https://cbor-wg.github.io/cddl-more-control/draft-bormann-cbor-cddl-more-control.html"
 
 pi: [toc, sortrefs, symrefs, compact, comments]
 
