@@ -286,8 +286,8 @@ Implementation Status
 <!-- RFC7942 -->
 
 In the CDDL tool described in {{Section F of RFC8610}},
-the control operators defined in revision -00 of this specification are
-implemented as of version 0.10.2; implementation of the rest is ongoing.
+the control operators defined this specification are
+implemented as of version 0.10.3.
 
 Security considerations
 =======================
