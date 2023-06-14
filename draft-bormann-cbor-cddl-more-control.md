@@ -4,7 +4,7 @@ v: 3
 title: >
   More Control Operators for CDDL
 abbrev: CDDL control operators
-docname: draft-bormann-cbor-cddl-more-control-latest
+docname: draft-ietf-cbor-cddl-more-control-latest
 # date: 2023-03-09
 cat: std
 consensus: true
