@@ -59,12 +59,11 @@ The present document defines a number of additional generally
 application control operators for text conversion (Bytes, Integers,
 JSON), operations on text, and deterministic encoding.
 
+<!-- 
 [^status]
 
-[^status]:  Revision –01 of this draft reflects comments from initial
-    discussion of the specification in the CBOR working group.
-    It is intended to be ready for working group adoption.
-
+[^status]:  Revision –00 of this WG draft ...
+ -->
 
 --- middle
 
