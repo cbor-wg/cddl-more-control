@@ -1,11 +1,11 @@
 # More Control Operators for CDDL
 
-This is the working area for the individual Internet-Draft, "More Control Operators for CDDL".
+This is the working area for the IETF [CBOR Working Group](https://datatracker.ietf.org/wg/cbor/documents/) Internet-Draft, "More Control Operators for CDDL".
 
-* [Editor's Copy](https://cbor-wg.github.io/cddl-more-control/#go.draft-bormann-cbor-cddl-more-control.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-bormann-cbor-cddl-more-control)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-bormann-cbor-cddl-more-control)
-* [Compare Editor's Copy to Individual Draft](https://cbor-wg.github.io/cddl-more-control/#go.draft-bormann-cbor-cddl-more-control.diff)
+* [Editor's Copy](https://cbor-wg.github.io/cddl-more-control/#go.draft-ietf-cbor-cddl-more-control.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-cbor-cddl-more-control)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-cbor-cddl-more-control)
+* [Compare Editor's Copy to Working Group Draft](https://cbor-wg.github.io/cddl-more-control/#go.draft-ietf-cbor-cddl-more-control.diff)
 
 
 ## Contributing
