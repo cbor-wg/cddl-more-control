@@ -68,7 +68,7 @@ RFCs have added to this extension point both in an
 application-specific and a more general way.
 
 The present document defines a number of additional generally
-application control operators for text conversion (Bytes, Integers,
+applicable control operators for text conversion (Bytes, Integers,
 JSON, Printf-style formatting), operations on text, and deterministic encoding.
 
 <!--
