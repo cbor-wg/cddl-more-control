@@ -182,7 +182,7 @@ Numbers
 | `.decimal` | Decimal Integer | ---       |
 {: title="Control Operator for Text Conversion of Integers"}
 
-This allows the modeling of text strings that carry numeric
+The control operator `.decimal` allows the modeling of text strings that carry numeric
 information in decimal form, such as in the uint64/int64 formats of
 YANG-JSON {{?RFC7951}}.
 
@@ -205,7 +205,7 @@ Printf-style Formatting
 | `.printf` | Printf-formatting of data item(s) | ---       |
 {: title="Control Operator for Printf-formatting of data item(s)"}
 
-This allows the modeling of text strings that carry various formatted
+The control operator `.printf` allows the modeling of text strings that carry various formatted
 information, as long as the format can be represented in Printf-style
 formatting strings as they are used in the C language (see Section
 7.21.6.1 of [C]).
