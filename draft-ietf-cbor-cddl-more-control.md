@@ -183,18 +183,19 @@ Numbers
 {: title="Control Operator for Text Conversion of Integers"}
 
 This allows the modeling of text strings that carry numeric
-information, such as in the uint64/int64 formats of YANG-JSON
-{{?RFC7951}}.
+information in decimal form, such as in the uint64/int64 formats of
+YANG-JSON {{?RFC7951}}.
 
 ~~~ cddl
 yang-json-sid = text .decimal (0..9223372036854775807)
 ~~~
 {: sourcecode-name="example2.cddl"}
 
-Again, the specification is opinionated by only providing numbers
+Again, the specification is opinionated by only providing integer numbers
 without leading zeros, i.e., the decimal numbers match the regular
-expression "0|-?[1-9][0-9]*" (of course, further restricted by the
-control type).  Future specifications can provide octal, hexadecimal,
+expression `0|-?[1-9][0-9]*` (of course, further restricted by the
+control type).
+See the next section for more flexibility, and for octal, hexadecimal,
 or binary conversions.
 
 Printf-style Formatting
