@@ -4,12 +4,12 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                    Universität Bremen TZI
-Intended status: Standards Track                           10 March 2023
-Expires: 11 September 2023
+Intended status: Standards Track                         7 December 2023
+Expires: 9 June 2024
 
 
                     More Control Operators for CDDL
-              draft-bormann-cbor-cddl-more-control-latest
+                draft-ietf-cbor-cddl-more-control-latest
 
 Abstract
 
@@ -22,19 +22,14 @@ Abstract
    application control operators for text conversion (Bytes, Integers,
    JSON), operations on text, and deterministic encoding.
 
-
-   // Revision -01 of this draft reflects comments from initial
-   // discussion of the specification in the CBOR working group.  It is
-   // intended to be ready for working group adoption.
-
 About This Document
 
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at https://cbor-
    wg.github.io/cddl-more-control/.  Status information for this
-   document may be found at https://datatracker.ietf.org/doc/draft-
-   bormann-cbor-cddl-more-control/.
+   document may be found at https://datatracker.ietf.org/doc/draft-ietf-
+   cbor-cddl-more-control/.
 
    Discussion of this document takes place on the Concise Binary Object
    Representation (CBOR) Maintenance and Extensions Working Group
@@ -60,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 September 2023.
+   This Internet-Draft will expire on 9 June 2024.
 
 Copyright Notice
 
@@ -387,7 +382,7 @@ Table of Contents
 
    [IANA.cddl]
               IANA, "Concise Data Definition Language (CDDL)",
-              <https://www.iana.org/assignments/cddl>.
+              <http://www.iana.org/assignments/cddl>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
