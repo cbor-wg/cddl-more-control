@@ -12,8 +12,8 @@ provides "control operators" as its main language extension point.
 RFCs have added to this extension point both in an
 application-specific and a more general way. 
        The present document defines a number of additional generally
-application control operators for text conversion (Bytes, Integers,
-JSON), operations on text, and deterministic encoding. 
+applicable control operators for text conversion (Bytes, Integers,
+JSON, Printf-style formatting), operations on text, and deterministic encoding. 
        
 
 
@@ -1076,8 +1076,8 @@ provides "control operators" as its main language extension point.
 RFCs have added to this extension point both in an
 application-specific and a more general way.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">The present document defines a number of additional generally
-application control operators for text conversion (Bytes, Integers,
-JSON), operations on text, and deterministic encoding.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+applicable control operators for text conversion (Bytes, Integers,
+JSON, Printf-style formatting), operations on text, and deterministic encoding.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1161,7 +1161,10 @@ JSON), operations on text, and deterministic encoding.<a href="#section-abstract
                 <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-numbers" class="internal xref">Numbers</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-json-values" class="internal xref">JSON Values</a></p>
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-printf-style-formatting" class="internal xref">Printf-style Formatting</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-json-values" class="internal xref">JSON Values</a></p>
 </li>
             </ul>
 </li>
@@ -1266,6 +1269,12 @@ applicable control operators:<a href="#section-1-2" class="pilcrow">¶</a></p>
               <code>.decimal</code>
 </td>
             <td class="text-left" rowspan="1" colspan="1">Text representation of integer numbers</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">
+              <code>.printf</code>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">Printf-formatted text representation of data items</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
@@ -1485,32 +1494,89 @@ of encoding).<a href="#section-2.1-7" class="pilcrow">¶</a></p>
             </tr>
           </tbody>
         </table>
-<p id="section-2.2-2">This allows the modeling of text strings that carry numeric
-information, such as in the uint64/int64 formats of YANG-JSON
-<span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span>.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">The control operator <code>.decimal</code> allows the modeling of text strings that carry numeric
+information in decimal form, such as in the uint64/int64 formats of
+YANG-JSON <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span>.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 <div class="lang-cddl sourcecode" id="section-2.2-3">
 <pre>
 yang-json-sid = text .decimal (0..9223372036854775807)
 </pre><a href="#section-2.2-3" class="pilcrow">¶</a>
 </div>
-<p id="section-2.2-4">Again, the specification is opinionated by only providing numbers
+<p id="section-2.2-4">Again, the specification is opinionated by only providing integer numbers
 without leading zeros, i.e., the decimal numbers match the regular
-expression "0|-?[1-9][0-9]*" (of course, further restricted by the
-control type).  Future specifications can provide octal, hexadecimal,
+expression <code>0|-?[1-9][0-9]*</code> (of course, further restricted by the
+control type).
+See the next section for more flexibility, and for octal, hexadecimal,
 or binary conversions.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="json-values">
+<div id="printf-style-formatting">
 <section id="section-2.3">
-        <h3 id="name-json-values">
-<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-json-values" class="section-name selfRef">JSON Values</a>
+        <h3 id="name-printf-style-formatting">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-printf-style-formatting" class="section-name selfRef">Printf-style Formatting</a>
         </h3>
-<p id="section-2.3-1">Some applications store complete JSON texts into text strings, the
-JSON value for which can easily be defined in CDDL.
-This is supported by a control operator similar to <code>.cbor</code> in <span><a href="https://rfc-editor.org/rfc/rfc8610#section-3.8.4" class="relref">Section 3.8.4</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
-<span id="name-control-operator-for-text-co"></span><table class="center" id="table-4">
+<span id="name-control-operator-for-printf"></span><table class="center" id="table-4">
           <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
+<a href="#name-control-operator-for-printf" class="selfRef">Control Operator for Printf-formatting of data item(s)</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">name</th>
+              <th class="text-left" rowspan="1" colspan="1">meaning</th>
+              <th class="text-left" rowspan="1" colspan="1">reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>.printf</code>
+</td>
+              <td class="text-left" rowspan="1" colspan="1">Printf-formatting of data item(s)</td>
+              <td class="text-left" rowspan="1" colspan="1">---</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-2.3-2">The control operator <code>.printf</code> allows the modeling of text strings that carry various formatted
+information, as long as the format can be represented in Printf-style
+formatting strings as they are used in the C language (see Section
+7.21.6.1 of <span>[<a href="#C" class="cite xref">C</a>]</span>).<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-2.3-3">
+<pre>
+my_alg_19 = hexlabel&lt;19&gt;
+hexlabel&lt;K&gt; = text .printf (["0x%04x", K])
+</pre><a href="#section-2.3-3" class="pilcrow">¶</a>
+</div>
+<p id="section-2.3-4">The controller (right-hand side) of the <code>.printf</code> control is an array
+of one Printf-style format string and zero or more data items that fit
+the individual conversion specifications in the format string.
+The construct matches a text string representing the textual output of
+an equivalent C-language <code>printf</code> function call that is given the
+format string and the data items following it in the array.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
+<p id="section-2.3-5">In the example given, <code>my_alg_19</code> matches the text string <code>"0x0013"</code>.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
+<p id="section-2.3-6">The data items in the controller array do not need to be literals,
+as for example in:<a href="#section-2.3-6" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-2.3-7">
+<pre>
+any_alg = hexlabel&lt;1..20&gt;
+hexlabel&lt;K&gt; = text .printf (["0x%04x", K])
+</pre><a href="#section-2.3-7" class="pilcrow">¶</a>
+</div>
+<p id="section-2.3-8">Here, <code>any_alg</code> matches the text strings <code>"0x0013"</code> or <code>"0x0001"</code> but
+not <code>"0x1234"</code>.<a href="#section-2.3-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="json-values">
+<section id="section-2.4">
+        <h3 id="name-json-values">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-json-values" class="section-name selfRef">JSON Values</a>
+        </h3>
+<p id="section-2.4-1">Some applications store complete JSON texts into text strings, the
+JSON value for which can easily be defined in CDDL.
+This is supported by a control operator similar to <code>.cbor</code> in <span><a href="https://rfc-editor.org/rfc/rfc8610#section-3.8.4" class="relref">Section 3.8.4</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<span id="name-control-operator-for-text-co"></span><table class="center" id="table-5">
+          <caption>
+<a href="#table-5" class="selfRef">Table 5</a>:
 <a href="#name-control-operator-for-text-co" class="selfRef">Control Operator for Text Conversion of JSON values</a>
           </caption>
 <thead>
@@ -1532,16 +1598,16 @@ This is supported by a control operator similar to <code>.cbor</code> in <span><
             </tr>
           </tbody>
         </table>
-<div class="lang-cddl sourcecode" id="section-2.3-3">
+<div class="lang-cddl sourcecode" id="section-2.4-3">
 <pre>
 embedded-claims = text .json claims
 claims = {iss: issuer, exp: expiry}
-</pre><a href="#section-2.3-3" class="pilcrow">¶</a>
+</pre><a href="#section-2.4-3" class="pilcrow">¶</a>
 </div>
-<p id="section-2.3-4">Note that a <code>.jsonseq</code> is not provided, as no use case is known yet.
+<p id="section-2.4-4">Note that a <code>.jsonseq</code> is not provided, as no use case is known yet.
 There is no way to constrain the use of blank space in data items to
 be validated; variants (e.g, not providing for any blank space) could
-be defined.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
+be defined.<a href="#section-2.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1558,9 +1624,9 @@ be defined.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-3.1-1">Often, text strings need to be constructed out of parts that can best
 be modeled as an array.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<span id="name-control-operator-for-text-g"></span><table class="center" id="table-5">
+<span id="name-control-operator-for-text-g"></span><table class="center" id="table-6">
           <caption>
-<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#table-6" class="selfRef">Table 6</a>:
 <a href="#name-control-operator-for-text-g" class="selfRef">Control Operator for Text Generation from Arrays</a>
           </caption>
 <thead>
@@ -1606,9 +1672,9 @@ encoded CBOR data item or a CBOR sequence.<a href="#section-4-1" class="pilcrow"
 <p id="section-4-2">This specification provides complementary control operators <code>.cbordet</code>
 and <code>.cborseqdet</code> that indicate that these data items/sequences need
 to be encoded in accordance to Sections <a href="https://rfc-editor.org/rfc/rfc8949#section-4.2.1" class="relref">4.2.1</a> and <a href="https://rfc-editor.org/rfc/rfc8949#section-4.2.2" class="relref">4.2.2</a> of <span>[<a href="#STD94" class="cite xref">STD94</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<span id="name-control-operator-for-determ"></span><table class="center" id="table-6">
+<span id="name-control-operator-for-determ"></span><table class="center" id="table-7">
         <caption>
-<a href="#table-6" class="selfRef">Table 6</a>:
+<a href="#table-7" class="selfRef">Table 7</a>:
 <a href="#name-control-operator-for-determ" class="selfRef">Control Operator for Deterministically Encoded Data Items and Sequences</a>
         </caption>
 <thead>
@@ -1649,13 +1715,15 @@ right-hand side and then do not need additional control operators.<a href="#sect
       <h2 id="name-iana-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-5-1">This document requests IANA to register the contents of
-<a href="#tbl-iana-reqs" class="auto internal xref">Table 7</a> into the registry
-"<a href="http://www.iana.org/assignments/cddl#cddl-control-operators" class="relref">CDDL Control Operators</a>" of <span>[<a href="#IANA.cddl" class="cite xref">IANA.cddl</a>]</span>:<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1"><span class="cref" id="to-be-removed">RFC Editor: please replace RFC-XXXX with the RFC
+number of this RFC and remove this note.</span><a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">This document requests IANA to register the contents of
+<a href="#tbl-iana-reqs" class="auto internal xref">Table 8</a> into the registry
+"<a href="http://www.iana.org/assignments/cddl#cddl-control-operators" class="relref">CDDL Control Operators</a>" of <span>[<a href="#IANA.cddl" class="cite xref">IANA.cddl</a>]</span>:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <span id="name-new-control-operators-to-be"></span><div id="tbl-iana-reqs">
-<table class="center" id="table-7">
+<table class="center" id="table-8">
         <caption>
-<a href="#table-7" class="selfRef">Table 7</a>:
+<a href="#table-8" class="selfRef">Table 8</a>:
 <a href="#name-new-control-operators-to-be" class="selfRef">New control operators to be registered</a>
         </caption>
 <thead>
@@ -1669,91 +1737,97 @@ right-hand side and then do not need additional control operators.<a href="#sect
             <td class="text-left" rowspan="1" colspan="1">
               <code>.b64u</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.b64u-sloppy</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.b64c</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.b64c-sloppy</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.b45</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.b32</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.h32</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.hex</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.hexlc</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.hexuc</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.decimal</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">
+              <code>.printf</code>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.json</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.join</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.cbordet</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <code>.cborseqdet</code>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">[RFCthis]</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFC-XXXX]</td>
           </tr>
         </tbody>
       </table>
@@ -1767,8 +1841,8 @@ right-hand side and then do not need additional control operators.<a href="#sect
       </h2>
 <p id="section-6-1">This section is to be removed before publishing as an RFC.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">In the CDDL tool described in <span><a href="https://rfc-editor.org/rfc/rfc8610#appendix-F" class="relref">Appendix F</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>,
-the control operators defined this specification are
-implemented as of version 0.10.3.<a href="#section-6-2" class="pilcrow">¶</a></p>
+the control operators defined in the present revision of this
+specification are implemented as of version 0.10.4.<a href="#section-6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1789,6 +1863,11 @@ implemented as of version 0.10.3.<a href="#section-6-2" class="pilcrow">¶</a></
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
+<dt id="C">[C]</dt>
+        <dd>
+<span class="refAuthor">International Organization for Standardization</span>, <span class="refTitle">"Information technology — Programming languages — C"</span>, <span class="refContent">Fourth Edition</span>, <span class="seriesInfo">ISO/IEC 9899:2018</span>, <time datetime="2018-06" class="refDate">June 2018</time>, <span>&lt;<a href="https://www.iso.org/standard/74528.html">https://www.iso.org/standard/74528.html</a>&gt;</span>. <span class="annotation">Technically equivalent specification text is available at <a href="https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf">https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf</a></span>
+          </dd>
+<dd class="break"></dd>
 <dt id="IANA.cddl">[IANA.cddl]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"Concise Data Definition Language (CDDL)"</span>, <span>&lt;<a href="http://www.iana.org/assignments/cddl">http://www.iana.org/assignments/cddl</a>&gt;</span>. </dd>
