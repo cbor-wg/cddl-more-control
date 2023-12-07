@@ -47,6 +47,18 @@ normative:
   RFC4648: base
   RFC9285: base45
   RFC8742: seq
+  C:
+    target: https://www.iso.org/standard/74528.html
+    title: Information technology — Programming languages — C
+    author:
+    - org: International Organization for Standardization
+    date: 2018-06
+    seriesinfo:
+      ISO/IEC: 9899:2018
+    refcontent:
+    - Fourth Edition
+    ann:
+    - Technically equivalent specification text is available at <https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf>
 
 --- abstract
 
@@ -57,7 +69,7 @@ application-specific and a more general way.
 
 The present document defines a number of additional generally
 application control operators for text conversion (Bytes, Integers,
-JSON), operations on text, and deterministic encoding.
+JSON, Printf-style formatting), operations on text, and deterministic encoding.
 
 <!--
 [^status]
@@ -86,6 +98,7 @@ applicable control operators:
 | `.b32`, `.h32`                 | Base32 representation of byte strings                     |
 | `.b45`                         | Base45 representation of byte strings                     |
 | `.decimal`                     | Text representation of integer numbers                    |
+| `.printf`                      | Printf-formatted text representation of data items        |
 | `.json`                        | Text representation of JSON values                        |
 | `.join`                        | Building text from array of components                    |
 | `.cbordet`, `.cborseqdet`      | deterministically encoded CBOR data items, CBOR sequences |
@@ -184,6 +197,45 @@ expression "0|-?[1-9][0-9]*" (of course, further restricted by the
 control type).  Future specifications can provide octal, hexadecimal,
 or binary conversions.
 
+Printf-style Formatting
+-------
+
+| name      | meaning                           | reference |
+| `.printf` | Printf-formatting of data item(s) | ---       |
+{: title="Control Operator for Printf-formatting of data item(s)"}
+
+This allows the modeling of text strings that carry various formatted
+information, as long as the format can be represented in Printf-style
+formatting strings as they are used in the C language (see Section
+7.21.6.1 of [C]).
+
+~~~ cddl
+my_alg_19 = hexlabel<19>
+hexlabel<K> = text .printf (["0x%04x", K])
+~~~
+{: sourcecode-name="example-printf.cddl"}
+
+The controller (right-hand side) of the `.printf` control is an array
+of one Printf-style format string and zero or more data items that fit
+the individual conversion specifications in the format string.
+The construct matches a text string representing the textual output of
+an equivalent C-language `printf` function call that is given the
+format string and the data items following it in the array.
+
+In the example given, `my_alg_19` matches the text string `"0x0013"`.
+
+The data items in the controller array do not need to be literals,
+as for example in:
+
+~~~ cddl
+any_alg = hexlabel<1..20>
+hexlabel<K> = text .printf (["0x%04x", K])
+~~~
+{: sourcecode-name="example-printf-uint.cddl"}
+
+Here, `any_alg` matches the text strings `"0x0013"` or `"0x0001"` but
+not `"0x1234"`.
+
 JSON Values
 -----------
 
@@ -256,26 +308,34 @@ right-hand side and then do not need additional control operators.
 IANA Considerations
 ==================
 
+
+[^to-be-removed]
+
+[^to-be-removed]: RFC Editor: please replace RFC-XXXX with the RFC
+    number of this RFC and remove this note.
+
+
 This document requests IANA to register the contents of
 {{tbl-iana-reqs}} into the registry
 "{{cddl-control-operators (CDDL Control Operators)<IANA.cddl}}" of {{IANA.cddl}}:
 
 | Name           | Reference |
-| `.b64u`        | [RFCthis] |
-| `.b64u-sloppy` | [RFCthis] |
-| `.b64c`        | [RFCthis] |
-| `.b64c-sloppy` | [RFCthis] |
-| `.b45`         | [RFCthis] |
-| `.b32`         | [RFCthis] |
-| `.h32`         | [RFCthis] |
-| `.hex`         | [RFCthis] |
-| `.hexlc`       | [RFCthis] |
-| `.hexuc`       | [RFCthis] |
-| `.decimal`     | [RFCthis] |
-| `.json`        | [RFCthis] |
-| `.join`        | [RFCthis] |
-| `.cbordet`     | [RFCthis] |
-| `.cborseqdet`  | [RFCthis] |
+| `.b64u`        | \[RFC-XXXX]  |
+| `.b64u-sloppy` | \[RFC-XXXX] |
+| `.b64c`        | \[RFC-XXXX] |
+| `.b64c-sloppy` | \[RFC-XXXX] |
+| `.b45`         | \[RFC-XXXX] |
+| `.b32`         | \[RFC-XXXX] |
+| `.h32`         | \[RFC-XXXX] |
+| `.hex`         | \[RFC-XXXX] |
+| `.hexlc`       | \[RFC-XXXX] |
+| `.hexuc`       | \[RFC-XXXX] |
+| `.decimal`     | \[RFC-XXXX] |
+| `.printf`      | \[RFC-XXXX] |
+| `.json`        | \[RFC-XXXX] |
+| `.join`        | \[RFC-XXXX] |
+| `.cbordet`     | \[RFC-XXXX] |
+| `.cborseqdet`  | \[RFC-XXXX] |
 {: #tbl-iana-reqs title="New control operators to be registered"}
 
 Implementation Status
@@ -285,8 +345,8 @@ Implementation Status
 <!-- RFC7942 -->
 
 In the CDDL tool described in {{Section F of RFC8610}},
-the control operators defined this specification are
-implemented as of version 0.10.3.
+the control operators defined in the present revision of this
+specification are implemented as of version 0.10.4.
 
 Security considerations
 =======================
