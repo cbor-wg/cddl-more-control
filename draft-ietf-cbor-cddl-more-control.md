@@ -59,7 +59,7 @@ The present document defines a number of additional generally
 application control operators for text conversion (Bytes, Integers,
 JSON), operations on text, and deterministic encoding.
 
-<!-- 
+<!--
 [^status]
 
 [^status]:  Revision –00 of this WG draft ...
