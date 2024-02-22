@@ -4,8 +4,8 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                    Universität Bremen TZI
-Intended status: Standards Track                         7 December 2023
-Expires: 9 June 2024
+Intended status: Standards Track                        22 February 2024
+Expires: 25 August 2024
 
 
                     More Control Operators for CDDL
@@ -56,11 +56,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 June 2024.
+   This Internet-Draft will expire on 25 August 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -77,7 +77,7 @@ Table of Contents
    1.  Introduction
      1.1.  Terminology
    2.  Text Conversion
-     2.1.  Byte Strings: Base16 (Hex), Base32, Base64
+     2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64
      2.2.  Numbers
      2.3.  Printf-style Formatting
      2.4.  JSON Values
@@ -144,6 +144,9 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
+   Regular expressions mentioned in the text are as defined in
+   [RFC9485].
+
    This specification uses terminology from [RFC8610].  In particular,
    with respect to control operators, "target" refers to the left-hand
    side operand, and "controller" to the right-hand side operand.
@@ -154,7 +157,7 @@ Table of Contents
 
 2.  Text Conversion
 
-2.1.  Byte Strings: Base16 (Hex), Base32, Base64
+2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64
 
    A CDDL model often defines data that are byte strings in essence but
    need to be transported in various encoded forms, such as base64 or
@@ -168,8 +171,8 @@ Table of Contents
    signature = bytes .cbor COSE_Sign1
 
    The specification of these control operators is complicated by the
-   large number of transformations in use.  Inspired by Section 8 of
-   [STD94], we use representations defined in [RFC4648] with the
+   large number of transformations in use.  Inspired by Section 8 of RFC
+   8949 [STD94], we use representations defined in [RFC4648] with the
    following names:
 
      +==============+=======================+========================+
@@ -263,9 +266,6 @@ Table of Contents
    represented in Printf-style formatting strings as they are used in
    the C language (see Section 7.21.6.1 of [C]).
 
-   my_alg_19 = hexlabel<19>
-   hexlabel<K> = text .printf (["0x%04x", K])
-
    The controller (right-hand side) of the .printf control is an array
    of one Printf-style format string and zero or more data items that
    fit the individual conversion specifications in the format string.
@@ -273,7 +273,18 @@ Table of Contents
    of an equivalent C-language printf function call that is given the
    format string and the data items following it in the array.
 
-   In the example given, my_alg_19 matches the text string "0x0013".
+   From the printf specification in the C language, length modifiers
+   (paragraph 7) are not used and MUST NOT be included in the format
+   string.  The 's' conversion specifier (paragraph 8) is used to
+   interpolate a text string in UTF-8 form.  The 'c' conversion
+   specifier (paragraph 8) represents a single Unicode scalar value as a
+   UTF-8 character.  The 'p' and 'n' conversion specifiers (paragraph 8)
+   are not used and MUST NOT be included in the format string.
+
+   In the following example, my_alg_19 matches the text string "0x0013":
+
+   my_alg_19 = hexlabel<19>
+   hexlabel<K> = text .printf (["0x%04x", K])
 
    The data items in the controller array do not need to be literals, as
    for example in:
@@ -327,8 +338,8 @@ Table of Contents
 
    In general, this control operator is hard to validate as it would
    require full parser functionality.  It is therefore recommended to
-   only use it in simple cases, and leave full parsing to ABNF Section 3
-   of [RFC9165] or similar.
+   only use it in simple cases, and leave full parsing to ABNF (see
+   Section 3 of [RFC9165]) or similar.
 
    legacy-ip-address = text .join [digits<1>, ".", digits<2>,
                               ".", digits<3>, ".", digits<4>]
@@ -342,7 +353,8 @@ Table of Contents
 
    This specification provides complementary control operators .cbordet
    and .cborseqdet that indicate that these data items/sequences need to
-   be encoded in accordance to Sections 4.2.1 and 4.2.2 of [STD94].
+   be encoded in accordance to Sections 4.2.1 and 4.2.2 of RFC 8949
+   [STD94].
 
            +=============+=========================+===========+
            | name        | meaning                 | reference |
@@ -476,15 +488,20 @@ Table of Contents
               Base45 Data Encoding", RFC 9285, DOI 10.17487/RFC9285,
               August 2022, <https://www.rfc-editor.org/rfc/rfc9285>.
 
+   [RFC9485]  Bormann, C. and T. Bray, "I-Regexp: An Interoperable
+              Regular Expression Format", RFC 9485,
+              DOI 10.17487/RFC9485, October 2023,
+              <https://www.rfc-editor.org/rfc/rfc9485>.
+
    [STD90]    Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
-              Interchange Format", STD 90, RFC 8259,
-              DOI 10.17487/RFC8259, December 2017,
-              <https://www.rfc-editor.org/rfc/rfc8259>.
+              Interchange Format", STD 90, RFC 8259, December 2017.
+
+              <https://www.rfc-editor.org/info/std90>
 
    [STD94]    Bormann, C. and P. Hoffman, "Concise Binary Object
-              Representation (CBOR)", STD 94, RFC 8949,
-              DOI 10.17487/RFC8949, December 2020,
-              <https://www.rfc-editor.org/rfc/rfc8949>.
+              Representation (CBOR)", STD 94, RFC 8949, December 2020.
+
+              <https://www.rfc-editor.org/info/std94>
 
 8.2.  Informative References
 
