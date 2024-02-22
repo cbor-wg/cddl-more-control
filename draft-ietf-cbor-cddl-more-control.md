@@ -276,7 +276,7 @@ be modeled as an array.
 In general, this control operator is hard to validate as it would
 require full parser functionality.
 It is therefore recommended to only use it in simple cases, and leave
-full parsing to ABNF {{Section 3 of -control1}} or similar.
+full parsing to ABNF (see {{Section 3 of -control1}}) or similar.
 
 ~~~ cddl
 legacy-ip-address = text .join [digits<1>, ".", digits<2>,
