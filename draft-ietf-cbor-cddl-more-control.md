@@ -37,10 +37,10 @@ author:
 normative:
   STD90:
     -: json
-    =: RFC8259
+#    =: RFC8259
   STD94:
     -: cbor
-    =: RFC8949
+#    =: RFC8949
   RFC8610: cddl
   IANA.cddl:
   RFC9165: control1
@@ -143,7 +143,7 @@ signature = bytes .cbor COSE_Sign1
 
 The specification of these control operators is complicated by the
 large number of transformations in use.  Inspired by {{Section 8 of
--cbor}}, we use representations defined in {{-base}} with the following
+RFC8949@-cbor}}, we use representations defined in {{-base}} with the following
 names:
 
 | name           | meaning                         | reference            |
@@ -306,7 +306,7 @@ encoded CBOR data item or a CBOR sequence.
 
 This specification provides complementary control operators `.cbordet`
 and `.cborseqdet` that indicate that these data items/sequences need
-to be encoded in accordance to {{Sections 4.2.1 and 4.2.2 of -cbor}}.
+to be encoded in accordance to {{Sections 4.2.1 and 4.2.2 of RFC8949@-cbor}}.
 
 | name          | meaning                                                           | reference |
 | `.cbordet`    | deterministically encoded CBOR data item                          | {{-cddl}}   |
@@ -353,7 +353,7 @@ This document requests IANA to register the contents of
 
 Implementation Status
 =====================
-{: removeinrfc="true"}
+{:removeinrfc}
 
 <!-- RFC7942 -->
 
@@ -370,7 +370,7 @@ The security considerations of {{-cddl}} apply.
 
 Acknowledgements
 ================
-{: numbered="no"}
+{:unnumbered}
 
 Henk Birkholz suggested the need for many of the control operators
 defined here.
