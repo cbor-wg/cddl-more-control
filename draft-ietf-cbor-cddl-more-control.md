@@ -210,12 +210,6 @@ information, as long as the format can be represented in Printf-style
 formatting strings as they are used in the C language (see Section
 7.21.6.1 of [C]).
 
-~~~ cddl
-my_alg_19 = hexlabel<19>
-hexlabel<K> = text .printf (["0x%04x", K])
-~~~
-{: sourcecode-name="example-printf.cddl"}
-
 The controller (right-hand side) of the `.printf` control is an array
 of one Printf-style format string and zero or more data items that fit
 the individual conversion specifications in the format string.
@@ -223,7 +217,22 @@ The construct matches a text string representing the textual output of
 an equivalent C-language `printf` function call that is given the
 format string and the data items following it in the array.
 
-In the example given, `my_alg_19` matches the text string `"0x0013"`.
+From the printf specification in the C language, length modifiers (paragraph 7)
+are not used and MUST NOT be included in the format string.
+The 's' conversion specifier (paragraph 8) is used to
+interpolate a text string in UTF-8 form.
+The 'c' conversion specifier (paragraph 8) represents a single Unicode
+scalar value as a UTF-8 character.
+The 'p' and 'n' conversion specifiers (paragraph 8) are not used and
+MUST NOT be included in the format string.
+
+In the following example, `my_alg_19` matches the text string `"0x0013"`:
+
+~~~ cddl
+my_alg_19 = hexlabel<19>
+hexlabel<K> = text .printf (["0x%04x", K])
+~~~
+{: sourcecode-name="example-printf.cddl"}
 
 The data items in the controller array do not need to be literals,
 as for example in:
