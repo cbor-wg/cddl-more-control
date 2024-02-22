@@ -46,6 +46,7 @@ normative:
   RFC9165: control1
   RFC4648: base
   RFC9285: base45
+  RFC9485: iregexp
   RFC8742: seq
   C:
     target: https://www.iso.org/standard/74528.html
@@ -108,6 +109,8 @@ Terminology
 -----------
 
 {::boilerplate bcp14-tagged}
+
+Regular expressions mentioned in the text are as defined in {{-iregexp}}.
 
 This specification uses terminology from {{-cddl}}.
 In particular, with respect to control operators, "target" refers to
