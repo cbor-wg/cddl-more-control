@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-22T00:46:54.440001+00:00",
+  "timestamp": "2024-02-25T00:51:28.411558+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -49,6 +49,74 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
-  "pulls": []
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOJHjjSc6APmTz",
+      "title": "Clarification on example in 3.1",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/1",
+      "state": "OPEN",
+      "author": "mguetschow",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "In the [current version](https://www.ietf.org/archive/id/draft-ietf-cbor-cddl-more-control-02.html#name-numbers), it reads\r\n\r\n```\r\nlegacy-ip-address = text .join [digits<1>, \".\", digits<2>,\r\n                           \".\", digits<3>, \".\", digits<4>]\r\ndigits<N> = text .decimal byte<n>\r\n```\r\n\r\nHow is this to be understood? I don't understand why generics are used here. If this is supposed to represent IPv4 adresses, I would have expected the following:\r\n\r\n```\r\nlegacy-ip-address = text .join [bytetext, \".\", bytetext,\r\n                           \".\", bytetext, \".\", bytetext]\r\nbytetext = text .decimal byte\r\nbyte = 0..255\r\n```\r\n\r\nIn particular, I couldn't find any definition of `byte<N>`.",
+      "createdAt": "2024-02-23T18:13:15Z",
+      "updatedAt": "2024-02-23T18:13:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOJHjjSc6APqF7",
+      "title": "Self-contained examples",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/2",
+      "state": "OPEN",
+      "author": "mguetschow",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I would propose to use self-contained examples, i.e., where all types/groups that are used are also defined (or part of the CDDL prelude).\r\n\r\nIn particular, the example [in 2.1](https://www.ietf.org/archive/id/draft-ietf-cbor-cddl-more-control-02.html#section-2.1) uses `COSE_Sign1`, and the example [in 2.4](https://www.ietf.org/archive/id/draft-ietf-cbor-cddl-more-control-02.html#section-2.4) uses `issuer` and `expiry`.\r\n\r\nPossibly related to #1 ",
+      "createdAt": "2024-02-23T18:24:15Z",
+      "updatedAt": "2024-02-24T13:38:11Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think there are competing objectives here:\r\n\r\n1.  making an example understandable without context\r\n2.  making an example motivate itself and the feature being demonstrated\r\n\r\nDefining all rules might aid (1), or might be counterproductive as the example becomes more complicated.\r\nReducing the amount of rules that need to be added might remove the motivation that is intrinsic to the existing examples.\r\n\r\nOn the two examples you cite, I see the balance clearly on the side of keeping the example self-motivating.",
+          "createdAt": "2024-02-24T13:38:09Z",
+          "updatedAt": "2024-02-24T13:38:09Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "PR_kwDOJHjjSc5n0fL4",
+      "title": "Don't complicate example 4 with generics",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/3",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Close #1",
+      "createdAt": "2024-02-24T13:30:02Z",
+      "updatedAt": "2024-02-24T13:30:02Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "c196f17571ab5f6dcba8841aebe35f5ed2844cd0",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "simplify-example-4",
+      "headRefOid": "aa074f03d3c59849e562a70f0b08db36016adab2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
