@@ -385,7 +385,7 @@ Internet-Draft           CDDL control operators            February 2024
                                    values
 
    embedded-claims = text .json claims
-   claims = {iss: issuer, exp: expiry}
+   claims = {iss: text, exp: text}
 
 
 
