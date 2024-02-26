@@ -51,6 +51,13 @@ Status of This Memo
    working documents as Internet-Drafts.  The list of current Internet-
    Drafts is at https://datatracker.ietf.org/drafts/current/.
 
+
+
+Bormann                  Expires 29 August 2024                 [Page 1]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
@@ -74,24 +81,38 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction
-     1.1.  Terminology
-   2.  Text Conversion
-     2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64
-     2.2.  Numbers
-     2.3.  Printf-style Formatting
-     2.4.  JSON Values
-   3.  Text Processing
-     3.1.  Join
-   4.  Deterministic Encoding
-   5.  IANA Considerations
-   6.  Implementation Status
-   7.  Security considerations
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
-   Acknowledgements
-   Author's Address
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
+     1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   4
+   2.  Text Conversion . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64  . . .   4
+     2.2.  Numbers . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     2.3.  Printf-style Formatting . . . . . . . . . . . . . . . . .   6
+     2.4.  JSON Values . . . . . . . . . . . . . . . . . . . . . . .   7
+   3.  Text Processing . . . . . . . . . . . . . . . . . . . . . . .   8
+     3.1.  Join  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+   4.  Deterministic Encoding  . . . . . . . . . . . . . . . . . . .   8
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+   6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  10
+   7.  Security considerations . . . . . . . . . . . . . . . . . . .  11
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  12
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  12
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  12
+
+
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 2]
+
+Internet-Draft           CDDL control operators            February 2024
+
 
 1.  Introduction
 
@@ -136,6 +157,19 @@ Table of Contents
 
               Table 1: New control operators in this document
 
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 3]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
 1.1.  Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -174,6 +208,23 @@ Table of Contents
    large number of transformations in use.  Inspired by Section 8 of RFC
    8949 [STD94], we use representations defined in [RFC4648] with the
    following names:
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 4]
+
+Internet-Draft           CDDL control operators            February 2024
+
 
      +==============+=======================+========================+
      | name         | meaning               | reference              |
@@ -223,6 +274,14 @@ Table of Contents
    legacy use of sloppy base32(/hex) was known at the time of writing.
    Base45 is known to be suboptimal for use in environments with limited
    data transparency (such as URLs), but is included because of its
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 5]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
    close relationship to QR codes and its wide use in health informatics
    (note that base45 is at least strongly specified not to allow sloppy
    forms of encoding).
@@ -265,6 +324,19 @@ Table of Contents
    carry various formatted information, as long as the format can be
    represented in Printf-style formatting strings as they are used in
    the C language (see Section 7.21.6.1 of [C]).
+
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 6]
+
+Internet-Draft           CDDL control operators            February 2024
+
 
    The controller (right-hand side) of the .printf control is an array
    of one Printf-style format string and zero or more data items that
@@ -315,6 +387,13 @@ Table of Contents
    embedded-claims = text .json claims
    claims = {iss: issuer, exp: expiry}
 
+
+
+Bormann                  Expires 29 August 2024                 [Page 7]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
    Note that a .jsonseq is not provided, as no use case is known yet.
    There is no way to constrain the use of blank space in data items to
    be validated; variants (e.g, not providing for any blank space) could
@@ -357,6 +436,20 @@ Table of Contents
    be encoded in accordance to Sections 4.2.1 and 4.2.2 of RFC 8949
    [STD94].
 
+
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 8]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
            +=============+=========================+===========+
            | name        | meaning                 | reference |
            +=============+=========================+===========+
@@ -384,6 +477,34 @@ Table of Contents
 
    This document requests IANA to register the contents of Table 8 into
    the registry "CDDL Control Operators" of [IANA.cddl]:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                 [Page 9]
+
+Internet-Draft           CDDL control operators            February 2024
+
 
                        +==============+============+
                        | Name         | Reference  |
@@ -433,6 +554,14 @@ Table of Contents
    operators defined in the present revision of this specification are
    implemented as of version 0.10.4.
 
+
+
+
+Bormann                  Expires 29 August 2024                [Page 10]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
 7.  Security considerations
 
    The security considerations of [RFC8610] apply.
@@ -479,6 +608,15 @@ Table of Contents
    [RFC8742]  Bormann, C., "Concise Binary Object Representation (CBOR)
               Sequences", RFC 8742, DOI 10.17487/RFC8742, February 2020,
               <https://www.rfc-editor.org/rfc/rfc8742>.
+
+
+
+
+
+Bormann                  Expires 29 August 2024                [Page 11]
+
+Internet-Draft           CDDL control operators            February 2024
+
 
    [RFC9165]  Bormann, C., "Additional Control Operators for the Concise
               Data Definition Language (CDDL)", RFC 9165,
@@ -528,4 +666,63 @@ Author's Address
    D-28359 Bremen
    Germany
    Phone: +49-421-218-63921
+
+
+
+Bormann                  Expires 29 August 2024                [Page 12]
+
+Internet-Draft           CDDL control operators            February 2024
+
+
    Email: cabo@tzi.org
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                  Expires 29 August 2024                [Page 13]
