@@ -291,9 +291,10 @@ It is therefore recommended to only use it in simple cases, and leave
 full parsing to ABNF (see {{Section 3 of -control1}}) or similar.
 
 ~~~ cddl
-legacy-ip-address = text .join [digits<1>, ".", digits<2>,
-                           ".", digits<3>, ".", digits<4>]
-digits<N> = text .decimal byte<n>
+legacy-ip-address = text .join [bytetext, ".", bytetext,
+                           ".", bytetext, ".", bytetext]
+bytetext = text .decimal byte
+byte = 0..255
 ~~~
 {: sourcecode-name="example4.cddl"}
 
