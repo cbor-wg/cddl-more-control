@@ -263,7 +263,7 @@ This is supported by a control operator similar to `.cbor` in {{Section
 
 ~~~ cddl
 embedded-claims = text .json claims
-claims = {iss: issuer, exp: expiry}
+claims = {iss: text, exp: text}
 ~~~
 {: sourcecode-name="example3.cddl"}
 
