@@ -177,7 +177,7 @@ of sloppy base32(/hex) was known at the time of writing.
 Base45 is known to be suboptimal for use in environments with limited
 data transparency (such as URLs), but is included because of its close
 relationship to QR codes and its wide use in health informatics (note
-that base45 is at least strongly specified not to allow sloppy forms
+that base45 is strongly specified not to allow sloppy forms
 of encoding).
 
 Numbers
