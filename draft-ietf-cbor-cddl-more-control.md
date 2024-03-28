@@ -45,7 +45,7 @@ normative:
   IANA.cddl:
   RFC9165: control1
   RFC4648: base
-  RFC9285: base45
+  RFC9285: base45 # downref!
   RFC9485: iregexp
   C:
     target: https://www.iso.org/standard/74528.html
@@ -58,7 +58,11 @@ normative:
     refcontent:
     - Fourth Edition
     ann:
-    - Technically equivalent specification text is available at <https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf>
+    - |
+        &#x2028; <!-- work around broken annotation content model -->
+        Technically equivalent specification text is available at <https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf>
+informative:
+  RFC7464: jsonseq
 
 --- abstract
 
