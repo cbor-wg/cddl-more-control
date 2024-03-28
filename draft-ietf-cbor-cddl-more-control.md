@@ -47,7 +47,6 @@ normative:
   RFC4648: base
   RFC9285: base45
   RFC9485: iregexp
-  RFC8742: seq
   C:
     target: https://www.iso.org/standard/74528.html
     title: Information technology — Programming languages — C
@@ -70,7 +69,7 @@ application-specific and a more general way.
 
 The present document defines a number of additional generally
 applicable control operators for text conversion (Bytes, Integers,
-JSON, Printf-style formatting), operations on text, and deterministic encoding.
+JSON, Printf-style formatting) and for an operation on text.
 
 <!--
 [^status]
@@ -102,13 +101,12 @@ applicable control operators:
 | `.printf`                      | Printf-formatted text representation of data items        |
 | `.json`                        | Text representation of JSON values                        |
 | `.join`                        | Building text from array of components                    |
-| `.cbordet`, `.cborseqdet`      | deterministically encoded CBOR data items, CBOR sequences |
 {: #tbl-new title="New control operators in this document"}
 
 Terminology
 -----------
 
-{::boilerplate bcp14-tagged}
+{::boilerplate bcp14-tagged-bcp}
 
 Regular expressions mentioned in the text are as defined in {{-iregexp}}.
 
@@ -298,26 +296,6 @@ byte = 0..255
 ~~~
 {: sourcecode-name="example4.cddl"}
 
-Deterministic Encoding
-======================
-
-{{-cddl}} and {{-seq}} specify the control operators `.cbor` and
-`.cborseq` to indicate that the value of a byte string should be an
-encoded CBOR data item or a CBOR sequence.
-
-This specification provides complementary control operators `.cbordet`
-and `.cborseqdet` that indicate that these data items/sequences need
-to be encoded in accordance to {{Sections 4.2.1 and 4.2.2 of RFC8949@-cbor}}.
-
-| name          | meaning                                                           | reference |
-| `.cbordet`    | deterministically encoded CBOR data item                          | {{-cddl}}   |
-| `.cborseqdet` | CBOR sequence made from deterministically encoded CBOR data items | {{-seq}}    |
-{: title="Control Operator for Deterministically Encoded Data Items and Sequences"}
-
-Note that considerations of deterministic representation at the
-application level can often be expressed in the CDDL definition of the
-right-hand side and then do not need additional control operators.
-
 
 IANA Considerations
 ==================
@@ -348,8 +326,6 @@ This document requests IANA to register the contents of
 | `.printf`      | \[RFC-XXXX] |
 | `.json`        | \[RFC-XXXX] |
 | `.join`        | \[RFC-XXXX] |
-| `.cbordet`     | \[RFC-XXXX] |
-| `.cborseqdet`  | \[RFC-XXXX] |
 {: #tbl-iana-reqs title="New control operators to be registered"}
 
 Implementation Status
