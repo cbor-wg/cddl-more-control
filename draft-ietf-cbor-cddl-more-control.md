@@ -269,7 +269,9 @@ claims = {iss: text, exp: text}
 ~~~
 {: sourcecode-name="example3.cddl"}
 
-Note that a `.jsonseq` is not provided, as no use case is known yet.
+Note that a `.jsonseq` is not provided for {{-jsonseq}}, as no use case
+for inclusion in CDDL is known yet.
+
 There is no way to constrain the use of blank space in data items to
 be validated; variants (e.g, not providing for any blank space) could
 be defined.
