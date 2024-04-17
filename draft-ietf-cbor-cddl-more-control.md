@@ -295,8 +295,9 @@ It is therefore recommended to only use it in simple cases, and leave
 full parsing to ABNF (see {{Section 3 of -control1}}) or similar.
 
 ~~~ cddl
-legacy-ip-address = text .join [bytetext, ".", bytetext,
-                           ".", bytetext, ".", bytetext]
+legacy-ip-address = text .join legacy-ip-address-elements
+legacy-ip-address-elements = [bytetext, ".", bytetext, ".",
+                              bytetext, ".", bytetext]
 bytetext = text .decimal byte
 byte = 0..255
 ~~~
