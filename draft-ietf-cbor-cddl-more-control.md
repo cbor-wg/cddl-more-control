@@ -325,8 +325,8 @@ the CDDL data model level.
 It is therefore recommended to limit the use of `.join` to simple
 arrangements where the array elements are laid out explicitly and
 there are no adjacent variable elements without intervening constant
-values, and where these constant values do not occur within the
-variable elements.\\
+values, and where these constant values do not occur within the text
+described by the variable elements.\\
 If more complex parsing functionality is required, the ABNF control
 operators (see {{Section 3 of -control1}}) may be useful; however, these
 cannot reach back into CDDL-specified elements like `.join` can do.
