@@ -289,10 +289,8 @@ be modeled as an array.
 | `.join` | concatenate elements of an array | ---       |
 {: title="Control Operator for Text Generation from Arrays"}
 
-In general, this control operator is hard to validate as it would
-require full parser functionality.
-It is therefore recommended to only use it in simple cases, and leave
-full parsing to ABNF (see {{Section 3 of -control1}}) or similar.
+For example, an IPv4 address in dotted-decimal might be modeled as in
+{{fig-join-example}}.
 
 ~~~ cddl
 legacy-ip-address = text .join legacy-ip-address-elements
@@ -301,8 +299,50 @@ legacy-ip-address-elements = [bytetext, ".", bytetext, ".",
 bytetext = text .decimal byte
 byte = 0..255
 ~~~
-{: sourcecode-name="example4.cddl"}
+{: #fig-join-example sourcecode-name="join-example.cddl"
+   title="Using the .join operator to build dotted-decimal IPv4 addresses"}
 
+The elements of the controller array need to be strings (text or byte
+strings).
+The control operator matches a data item if that data item is also a
+string, built by concatenating the strings in the array.
+The result of this concatenation is of the same kind of string (text
+or bytes) as the first element of the array.
+(If there is no element in the array, the `.join` construct matches
+either kind of empty string, obviously further constrained by the
+control operator target.)
+The concatenation is performed on the sequences of bytes in the
+strings.
+If the result of the concatenation is a text string, the resulting
+sequence of bytes MUST be valid UTF-8.
+
+Note that this control operator is hard to validate in the most
+general case, as this would require full parser functionality.
+Simple implementation strategies will use array elements with constant
+values as guideposts ("markers", such as the `"."` in {{fig-join-example}})
+for isolating the variable elements that need further validation at
+the CDDL data model level.
+It is therefore recommended to limit the use of `.join` to simple
+arrangements where the array elements are laid out explicitly and
+there are no adjacent variable elements without intervening constant
+values, and where these constant values do not occur within the
+variable elements.\\
+If more complex parsing functionality is required, the ABNF control
+operators (see {{Section 3 of -control1}}) may be useful; however, these
+cannot reach back into CDDL-specified elements like `.join` can do.
+
+{:aside}
+>
+Implementation note: A validator implementation can use the marker
+elements to scan the text, isolating the variable elements.
+It also can build a parsing regexp ({{Section 6 of -iregexp}}) from the
+elements of the controller array, with capture groups for each
+element, and validate the captures against the elements of the array.
+In the most general case, these implementation strategies can exhibit
+false negatives, where the implementation cannot find the structure
+that would be successfully validated using the controller; it is
+RECOMMENDED that implementations provide full coverage at least for
+the marker-based subset outlined in the previous paragraph.
 
 IANA Considerations
 ==================
