@@ -459,7 +459,8 @@ Internet-Draft           CDDL control operators               April 2024
    to limit the use of .join to simple arrangements where the array
    elements are laid out explicitly and there are no adjacent variable
    elements without intervening constant values, and where these
-   constant values do not occur within the variable elements.
+   constant values do not occur within the text described by the
+   variable elements.
    If more complex parsing functionality is required, the ABNF control
    operators (see Section 3 of [RFC9165]) may be useful; however, these
    cannot reach back into CDDL-specified elements like .join can do.
@@ -484,7 +485,6 @@ Internet-Draft           CDDL control operators               April 2024
 
    This document requests IANA to register the contents of Table 7 into
    the registry "CDDL Control Operators" of [IANA.cddl]:
-
 
 
 
