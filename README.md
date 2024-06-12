@@ -7,6 +7,7 @@ This is the working area for the IETF [CBOR Working Group](https://datatracker.i
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-cbor-cddl-more-control)
 * [Compare Editor's Copy to Working Group Draft](https://cbor-wg.github.io/cddl-more-control/#go.draft-ietf-cbor-cddl-more-control.diff)
 
+[Access to all branches](https://cbor-wg.github.io/cddl-more-control/)
 
 ## Contributing
 

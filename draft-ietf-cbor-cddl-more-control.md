@@ -168,6 +168,14 @@ combinations only ever occur in error, so the usability of CDDL is
 increased by not providing them in the first place.  Also, adding "c"
 makes sure that any decision for classic base64 is actively taken.
 
+These control operators are "strict" in their matching, i.e., they
+do validate the mandates of their base documents.
+Note that this also means that `.b64u` and `.b64c` only accept the
+alphabets defined for each of them, respectively; this is maybe worth
+pointing out here explicitly as CDDL's "b64" literal prefix simply
+accepts either alphabet and this behavior is different from that of
+these control operators.
+
 The additional designation "sloppy" indicates that the text string is
 not validated for any additional bits being zero, in variance to what
 is specified in the paragraph behind table 1 in {{Section 4 of -base}}.
