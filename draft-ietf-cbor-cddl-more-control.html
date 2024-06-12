@@ -1446,7 +1446,14 @@ base64 classic without padding.  Experience indicates that these
 combinations only ever occur in error, so the usability of CDDL is
 increased by not providing them in the first place.  Also, adding "c"
 makes sure that any decision for classic base64 is actively taken.<a href="#section-2.1-6" class="pilcrow">¶</a></p>
-<p id="section-2.1-7">The additional designation "sloppy" indicates that the text string is
+<p id="section-2.1-7">These control operators are "strict" in their matching, i.e., they
+do validate the mandates of their base documents.
+Note that this also means that <code>.b64u</code> and <code>.b64c</code> only accept the
+alphabets defined for each of them, respectively; this is maybe worth
+pointing out here explicitly as CDDL's "b64" literal prefix simply
+accepts either alphabet and this behavior is different from that of
+these control operators.<a href="#section-2.1-7" class="pilcrow">¶</a></p>
+<p id="section-2.1-8">The additional designation "sloppy" indicates that the text string is
 not validated for any additional bits being zero, in variance to what
 is specified in the paragraph behind table 1 in <span><a href="https://rfc-editor.org/rfc/rfc4648#section-4" class="relref">Section 4</a> of [<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>.
 Note that the present specification is opinionated again in not
@@ -1456,7 +1463,7 @@ Base45 is known to be suboptimal for use in environments with limited
 data transparency (such as URLs), but is included because of its close
 relationship to QR codes and its wide use in health informatics (note
 that base45 is strongly specified not to allow sloppy forms
-of encoding).<a href="#section-2.1-7" class="pilcrow">¶</a></p>
+of encoding).<a href="#section-2.1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="numbers">

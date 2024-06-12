@@ -266,14 +266,14 @@ Internet-Draft           CDDL control operators                June 2024
    increased by not providing them in the first place.  Also, adding "c"
    makes sure that any decision for classic base64 is actively taken.
 
-   The additional designation "sloppy" indicates that the text string is
-   not validated for any additional bits being zero, in variance to what
-   is specified in the paragraph behind table 1 in Section 4 of
-   [RFC4648].  Note that the present specification is opinionated again
-   in not specifying a sloppy variant of base32 or base32/hex, as no
-   legacy use of sloppy base32(/hex) was known at the time of writing.
-   Base45 is known to be suboptimal for use in environments with limited
-   data transparency (such as URLs), but is included because of its
+   These control operators are "strict" in their matching, i.e., they do
+   validate the mandates of their base documents.  Note that this also
+   means that .b64u and .b64c only accept the alphabets defined for each
+   of them, respectively; this is maybe worth pointing out here
+   explicitly as CDDL's "b64" literal prefix simply accepts either
+   alphabet and this behavior is different from that of these control
+   operators.
+
 
 
 
@@ -282,6 +282,14 @@ Bormann                 Expires 14 December 2024                [Page 5]
 Internet-Draft           CDDL control operators                June 2024
 
 
+   The additional designation "sloppy" indicates that the text string is
+   not validated for any additional bits being zero, in variance to what
+   is specified in the paragraph behind table 1 in Section 4 of
+   [RFC4648].  Note that the present specification is opinionated again
+   in not specifying a sloppy variant of base32 or base32/hex, as no
+   legacy use of sloppy base32(/hex) was known at the time of writing.
+   Base45 is known to be suboptimal for use in environments with limited
+   data transparency (such as URLs), but is included because of its
    close relationship to QR codes and its wide use in health informatics
    (note that base45 is strongly specified not to allow sloppy forms of
    encoding).
@@ -320,14 +328,6 @@ Internet-Draft           CDDL control operators                June 2024
           Table 4: Control Operator for Printf-formatting of data
                                   item(s)
 
-   The control operator .printf allows the modeling of text strings that
-   carry various formatted information, as long as the format can be
-   represented in Printf-style formatting strings as they are used in
-   the C language (see Section 7.21.6.1 of [C]).
-
-
-
-
 
 
 
@@ -337,6 +337,11 @@ Bormann                 Expires 14 December 2024                [Page 6]
 
 Internet-Draft           CDDL control operators                June 2024
 
+
+   The control operator .printf allows the modeling of text strings that
+   carry various formatted information, as long as the format can be
+   represented in Printf-style formatting strings as they are used in
+   the C language (see Section 7.21.6.1 of [C]).
 
    The controller (right-hand side) of the .printf control is an array
    of one Printf-style format string and zero or more data items that
@@ -374,6 +379,21 @@ Internet-Draft           CDDL control operators                June 2024
    supported by a control operator similar to .cbor in Section 3.8.4 of
    [RFC8610].
 
+
+
+
+
+
+
+
+
+
+
+Bormann                 Expires 14 December 2024                [Page 7]
+
+Internet-Draft           CDDL control operators                June 2024
+
+
                       +=======+=========+===========+
                       | name  | meaning | reference |
                       +=======+=========+===========+
@@ -386,13 +406,6 @@ Internet-Draft           CDDL control operators                June 2024
 
    embedded-claims = text .json claims
    claims = {iss: text, exp: text}
-
-
-
-Bormann                 Expires 14 December 2024                [Page 7]
-
-Internet-Draft           CDDL control operators                June 2024
-
 
    Note that a .jsonseq is not provided for [RFC7464], as no use case
    for inclusion in CDDL is known yet.
@@ -429,6 +442,14 @@ Internet-Draft           CDDL control operators                June 2024
       Figure 1: Using the .join operator to build dotted-decimal IPv4
                                  addresses
 
+
+
+
+Bormann                 Expires 14 December 2024                [Page 8]
+
+Internet-Draft           CDDL control operators                June 2024
+
+
    The elements of the controller array need to be strings (text or byte
    strings).  The control operator matches a data item if that data item
    is also a string, built by concatenating the strings in the array.
@@ -439,16 +460,6 @@ Internet-Draft           CDDL control operators                June 2024
    target.)  The concatenation is performed on the sequences of bytes in
    the strings.  If the result of the concatenation is a text string,
    the resulting sequence of bytes MUST be valid UTF-8.
-
-
-
-
-
-
-Bormann                 Expires 14 December 2024                [Page 8]
-
-Internet-Draft           CDDL control operators                June 2024
-
 
    Note that this control operator is hard to validate in the most
    general case, as this would require full parser functionality.
@@ -485,17 +496,6 @@ Internet-Draft           CDDL control operators                June 2024
 
    This document requests IANA to register the contents of Table 7 into
    the registry "CDDL Control Operators" of [IANA.cddl]:
-
-
-
-
-
-
-
-
-
-
-
 
 
 
