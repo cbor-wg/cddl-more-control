@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-11T00:54:11.641846+00:00",
+  "timestamp": "2024-06-13T00:53:37.669359+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -116,15 +116,15 @@
       "id": "I_kwDOJHjjSc6FxePo",
       "title": "Fortify strictness of RFC 4648 (baseNN)",
       "url": "https://github.com/cbor-wg/cddl-more-control/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "> I\u2019d like to ask that the draft explicitly say that .b4u and .b4c accept only their respective alphabets.\r\n> \r\n> - RFC 4648 only really says how to encode, not what decoders should do\r\n> - B64 decoders out there widely accept both; What .b64u and .b64c do here is far from the norm (but I like it)\r\n> - This draft is a specification that we expect other cddl tool implementors to follow so it should be clear\r\n> \r\n> It would also be helpful for CDDL-using document authors like me to not have to go read and interpret RFC 4648.\r\n\r\n(Laurence Lundblade in <https://mailarchive.ietf.org/arch/msg/cbor/u5JGioIgCdtxEKs8k2MtSgCIH9w>.)",
       "createdAt": "2024-04-15T18:25:19Z",
-      "updatedAt": "2024-04-15T18:25:19Z",
-      "closedAt": null,
+      "updatedAt": "2024-06-12T10:17:06Z",
+      "closedAt": "2024-06-12T10:17:06Z",
       "comments": []
     }
   ],
@@ -176,25 +176,63 @@
       "id": "PR_kwDOJHjjSc5s8nij",
       "title": "Dot join",
       "url": "https://github.com/cbor-wg/cddl-more-control/pull/5",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-04-17T16:42:44Z",
-      "updatedAt": "2024-05-15T12:49:22Z",
+      "updatedAt": "2024-06-12T10:05:11Z",
       "baseRepository": "cbor-wg/cddl-more-control",
       "baseRefName": "main",
       "baseRefOid": "a6296dc699398ee964c0c98b0abf0eefa5099f37",
       "headRepository": "cbor-wg/cddl-more-control",
       "headRefName": "dot-join",
       "headRefOid": "f19b0be50cb58eda14366ec038fe6471d33169f4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-06-12T10:05:11Z",
+      "mergedAt": "2024-06-12T10:05:11Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "2dc55343609c7a028038f2458bbcb5d34b3cbc68"
+      },
       "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOJHjjSc5yN198",
+      "title": "Close #4",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/6",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-06-12T10:15:46Z",
+      "updatedAt": "2024-06-12T10:17:44Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "2dc55343609c7a028038f2458bbcb5d34b3cbc68",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "close-4",
+      "headRefOid": "5a34e0707c0ef7586cc909169cf61cc583410f7c",
+      "closedAt": "2024-06-12T10:17:05Z",
+      "mergedAt": "2024-06-12T10:17:05Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "ab68e17c97c2f0e53e9a849948b60bf63a74c970"
+      },
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I merged this without waiting for a review so we can have a -05 ahead of today's interim.",
+          "createdAt": "2024-06-12T10:17:43Z",
+          "updatedAt": "2024-06-12T10:17:43Z"
+        }
+      ],
       "reviews": []
     }
   ]
