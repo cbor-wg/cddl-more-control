@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-14T01:00:14.570963+00:00",
+  "timestamp": "2024-07-16T00:56:27.490618+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -139,9 +139,17 @@
       "labels": [],
       "body": "For example, \r\n\r\n    The target of .b64u MUST be a text string type\r\n    The controller MUST be a byte string type (or a text string type)\r\n\r\nMaybe add columns to the table of operators to indicate the types of the target and controller? I think someone implementing this needs to know what the types allowed for the target and controller are.\r\n\r\nOther language in the section could be more specification-like using MUST more and such.",
       "createdAt": "2024-07-13T17:44:28Z",
-      "updatedAt": "2024-07-13T17:44:28Z",
+      "updatedAt": "2024-07-14T05:02:40Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The question would be what is the target of the MUST.\r\nAre you describing what a specification writer is supposed to do?\r\nThat would require defining what a \"text string type\" is -- CDDL rules are more complex than that.\r\nAre you describing what a data item is supposed to look like?\r\nThe approach in a data modeling language is that you can try a match with anything and will get \"match\" or \"no match\".\r\nSo I think the language needs to be on this level, not 2119 \"interoperability requirements\".",
+          "createdAt": "2024-07-14T05:02:39Z",
+          "updatedAt": "2024-07-14T05:02:39Z"
+        }
+      ]
     }
   ],
   "pulls": [
