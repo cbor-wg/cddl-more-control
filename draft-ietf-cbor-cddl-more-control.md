@@ -5,7 +5,7 @@ title: >
   More Control Operators for CDDL
 abbrev: CDDL control operators
 docname: draft-ietf-cbor-cddl-more-control-latest
-# date: 2024-02-26
+# date: 2024-07-20
 cat: std
 consensus: true
 stream: IETF
@@ -22,9 +22,7 @@ venue:
 pi: [toc, sortrefs, symrefs, compact, comments]
 
 author:
-  -
-    ins: C. Bormann
-    name: Carsten Bormann
+  - name: Carsten Bormann
     org: Universität Bremen TZI
     street: Postfach 330440
     city: Bremen
@@ -110,7 +108,7 @@ applicable control operators:
 Terminology
 -----------
 
-{::boilerplate bcp14-tagged-bcp}
+{::boilerplate bcp14-tagged-bcp14}
 
 Regular expressions mentioned in the text are as defined in {{-iregexp}}.
 
