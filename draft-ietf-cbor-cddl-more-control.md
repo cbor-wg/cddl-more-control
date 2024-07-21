@@ -5,7 +5,7 @@ title: >
   More Control Operators for CDDL
 abbrev: CDDL control operators
 docname: draft-ietf-cbor-cddl-more-control-latest
-# date: 2024-02-26
+# date: 2024-07-20
 cat: std
 consensus: true
 stream: IETF
@@ -22,9 +22,7 @@ venue:
 pi: [toc, sortrefs, symrefs, compact, comments]
 
 author:
-  -
-    ins: C. Bormann
-    name: Carsten Bormann
+  - name: Carsten Bormann
     org: Universität Bremen TZI
     street: Postfach 330440
     city: Bremen
@@ -95,22 +93,23 @@ application-specific {{?RFC9090}} and a more general {{RFC9165}} way.
 The present document defines a number of additional generally
 applicable control operators:
 
-| Name                           | Purpose                                                   |
-| `.b64u`, `.b64c`               | Base64 representation of byte strings                     |
-| `.b64u-sloppy`, `.b64c-sloppy` | (sloppy-tolerant variants of the above)                   |
-| `.hex`, `.hexlc`, `.hexuc`     | Base16 representation of byte strings                     |
-| `.b32`, `.h32`                 | Base32 representation of byte strings                     |
-| `.b45`                         | Base45 representation of byte strings                     |
-| `.decimal`                     | Text representation of integer numbers                    |
-| `.printf`                      | Printf-formatted text representation of data items        |
-| `.json`                        | Text representation of JSON values                        |
-| `.join`                        | Building text from array of components                    |
-{: #tbl-new title="New control operators in this document"}
+| Name                           | t             | c     | Purpose                                            |
+| `.b64u`, `.b64c`               | text          | bytes | Base64 representation of byte strings              |
+| `.b64u-sloppy`, `.b64c-sloppy` | text          | bytes | (sloppy-tolerant variants of the above)            |
+| `.hex`, `.hexlc`, `.hexuc`     | text          | bytes | Base16 representation of byte strings              |
+| `.b32`, `.h32`                 | text          | bytes | Base32 representation of byte strings              |
+| `.b45`                         | text          | bytes | Base45 representation of byte strings              |
+| `.decimal`                     | text          | int   | Text representation of integer numbers             |
+| `.printf`                      | text          | array | Printf-formatted text representation of data items |
+| `.json`                        | text          | any   | Text representation of JSON values                 |
+| `.join`                        | text or bytes | array | Build text or byte string from array of components    |
+{: #tbl-new title="New control operators in this document, 
+t = target type (left-hand side), c = controller type (right-hand side)"}
 
 Terminology
 -----------
 
-{::boilerplate bcp14-tagged-bcp}
+{::boilerplate bcp14-tagged-bcp14}
 
 Regular expressions mentioned in the text are as defined in {{-iregexp}}.
 
