@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-18T00:55:07.329909+00:00",
+  "timestamp": "2024-07-21T00:59:52.669368+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -139,7 +139,7 @@
       "labels": [],
       "body": "For example, \r\n\r\n    The target of .b64u MUST be a text string type\r\n    The controller MUST be a byte string type (or a text string type)\r\n\r\nMaybe add columns to the table of operators to indicate the types of the target and controller? I think someone implementing this needs to know what the types allowed for the target and controller are.\r\n\r\nOther language in the section could be more specification-like using MUST more and such.",
       "createdAt": "2024-07-13T17:44:28Z",
-      "updatedAt": "2024-07-14T05:02:40Z",
+      "updatedAt": "2024-07-20T20:08:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -148,6 +148,20 @@
           "body": "The question would be what is the target of the MUST.\r\nAre you describing what a specification writer is supposed to do?\r\nThat would require defining what a \"text string type\" is -- CDDL rules are more complex than that.\r\nAre you describing what a data item is supposed to look like?\r\nThe approach in a data modeling language is that you can try a match with anything and will get \"match\" or \"no match\".\r\nSo I think the language needs to be on this level, not 2119 \"interoperability requirements\".",
           "createdAt": "2024-07-14T05:02:39Z",
           "updatedAt": "2024-07-14T05:02:39Z"
+        },
+        {
+          "author": "laurencelundblade",
+          "authorAssociation": "NONE",
+          "body": "I think the MUSTs should be directed at the authors of CDDL validation tools.  It can say \"MUST match xxx\".  I think that will work well for those writing specifications in CDDL too.\r\n\r\nInteroperability and clarity are just as important here as in any other IETF document, so I think 2119 language is applicable.\r\n\r\nWhen I was working on EAT, Hannes made the comment to me that I should use more requirement-oriented language. I think he was right. I reworked a lot of the language and EAT is much better for it. ",
+          "createdAt": "2024-07-20T18:20:10Z",
+          "updatedAt": "2024-07-20T18:20:10Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "It's easy to get a lot of \"2+2 MUST be 4\", while still struggling to explain the concept of addition in general.  The examples you gave above are not statements about the tools and what they MUST do.  (I think a single \"MUST work right\" would work best, but wouldn't add anything either.)\r\nI think it is useful to attempt to further some truth in advertising about what a specific kind of tool is, such as a validating tool.  We could spend some time setting up a taxonomy.  I think that will change a lot in the next round where we add annotations as a first order concept, so now would not be the best time to do that work.",
+          "createdAt": "2024-07-20T20:08:54Z",
+          "updatedAt": "2024-07-20T20:08:54Z"
         }
       ]
     }
@@ -257,6 +271,32 @@
           "updatedAt": "2024-06-12T10:17:43Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOJHjjSc51_XBc",
+      "title": "Type columns",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/8",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Partially address #7\r\nThank you!\r\n",
+      "createdAt": "2024-07-20T15:11:13Z",
+      "updatedAt": "2024-07-20T15:11:28Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "ab68e17c97c2f0e53e9a849948b60bf63a74c970",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "type-columns",
+      "headRefOid": "2cbe2d33830d8485b956ad2e15e96a12efff3f5f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
