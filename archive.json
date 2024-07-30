@@ -1,0 +1,305 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-07-30T00:56:18.906272+00:00",
+  "repo": "cbor-wg/cddl-more-control",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOJHjjSc6APmTz",
+      "title": "Clarification on example in 3.1",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/1",
+      "state": "CLOSED",
+      "author": "mguetschow",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In the [current version](https://www.ietf.org/archive/id/draft-ietf-cbor-cddl-more-control-02.html#name-numbers), it reads\r\n\r\n```\r\nlegacy-ip-address = text .join [digits<1>, \".\", digits<2>,\r\n                           \".\", digits<3>, \".\", digits<4>]\r\ndigits<N> = text .decimal byte<n>\r\n```\r\n\r\nHow is this to be understood? I don't understand why generics are used here. If this is supposed to represent IPv4 adresses, I would have expected the following:\r\n\r\n```\r\nlegacy-ip-address = text .join [bytetext, \".\", bytetext,\r\n                           \".\", bytetext, \".\", bytetext]\r\nbytetext = text .decimal byte\r\nbyte = 0..255\r\n```\r\n\r\nIn particular, I couldn't find any definition of `byte<N>`.",
+      "createdAt": "2024-02-23T18:13:15Z",
+      "updatedAt": "2024-02-26T08:20:26Z",
+      "closedAt": "2024-02-26T08:20:26Z",
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOJHjjSc6APqF7",
+      "title": "Self-contained examples",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/2",
+      "state": "CLOSED",
+      "author": "mguetschow",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I would propose to use self-contained examples, i.e., where all types/groups that are used are also defined (or part of the CDDL prelude).\r\n\r\nIn particular, the example [in 2.1](https://www.ietf.org/archive/id/draft-ietf-cbor-cddl-more-control-02.html#section-2.1) uses `COSE_Sign1`, and the example [in 2.4](https://www.ietf.org/archive/id/draft-ietf-cbor-cddl-more-control-02.html#section-2.4) uses `issuer` and `expiry`.\r\n\r\nPossibly related to #1 ",
+      "createdAt": "2024-02-23T18:24:15Z",
+      "updatedAt": "2024-02-26T14:03:11Z",
+      "closedAt": "2024-02-26T14:03:10Z",
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think there are competing objectives here:\r\n\r\n1.  making an example understandable without context\r\n2.  making an example motivate itself and the feature being demonstrated\r\n\r\nDefining all rules might aid (1), or might be counterproductive as the example becomes more complicated.\r\nReducing the amount of rules that need to be added might remove the motivation that is intrinsic to the existing examples.\r\n\r\nOn the two examples you cite, I see the balance clearly on the side of keeping the example self-motivating.",
+          "createdAt": "2024-02-24T13:38:09Z",
+          "updatedAt": "2024-02-24T13:38:09Z"
+        },
+        {
+          "author": "mguetschow",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> On the two examples you cite, I see the balance clearly on the side of keeping the example self-motivating.\r\n\r\nFor the first one, I agree.\r\nFor the second one, I don't see a difference if both `issuer` and `expiry` would be replaced by, e.g., `text`.",
+          "createdAt": "2024-02-26T13:25:33Z",
+          "updatedAt": "2024-02-26T13:25:33Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "OK, now 9e8c585.\r\nI think we are done with that issue?",
+          "createdAt": "2024-02-26T13:47:12Z",
+          "updatedAt": "2024-02-26T13:47:44Z"
+        },
+        {
+          "author": "mguetschow",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yes, thank you!",
+          "createdAt": "2024-02-26T14:03:10Z",
+          "updatedAt": "2024-02-26T14:03:10Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOJHjjSc6FxePo",
+      "title": "Fortify strictness of RFC 4648 (baseNN)",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/4",
+      "state": "CLOSED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> I\u2019d like to ask that the draft explicitly say that .b4u and .b4c accept only their respective alphabets.\r\n> \r\n> - RFC 4648 only really says how to encode, not what decoders should do\r\n> - B64 decoders out there widely accept both; What .b64u and .b64c do here is far from the norm (but I like it)\r\n> - This draft is a specification that we expect other cddl tool implementors to follow so it should be clear\r\n> \r\n> It would also be helpful for CDDL-using document authors like me to not have to go read and interpret RFC 4648.\r\n\r\n(Laurence Lundblade in <https://mailarchive.ietf.org/arch/msg/cbor/u5JGioIgCdtxEKs8k2MtSgCIH9w>.)",
+      "createdAt": "2024-04-15T18:25:19Z",
+      "updatedAt": "2024-06-12T10:17:06Z",
+      "closedAt": "2024-06-12T10:17:06Z",
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOJHjjSc6PePeE",
+      "title": "Maybe more standards-oriented language for section on byte strings?",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/7",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "For example, \r\n\r\n    The target of .b64u MUST be a text string type\r\n    The controller MUST be a byte string type (or a text string type)\r\n\r\nMaybe add columns to the table of operators to indicate the types of the target and controller? I think someone implementing this needs to know what the types allowed for the target and controller are.\r\n\r\nOther language in the section could be more specification-like using MUST more and such.",
+      "createdAt": "2024-07-13T17:44:28Z",
+      "updatedAt": "2024-07-20T20:08:55Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The question would be what is the target of the MUST.\r\nAre you describing what a specification writer is supposed to do?\r\nThat would require defining what a \"text string type\" is -- CDDL rules are more complex than that.\r\nAre you describing what a data item is supposed to look like?\r\nThe approach in a data modeling language is that you can try a match with anything and will get \"match\" or \"no match\".\r\nSo I think the language needs to be on this level, not 2119 \"interoperability requirements\".",
+          "createdAt": "2024-07-14T05:02:39Z",
+          "updatedAt": "2024-07-14T05:02:39Z"
+        },
+        {
+          "author": "laurencelundblade",
+          "authorAssociation": "NONE",
+          "body": "I think the MUSTs should be directed at the authors of CDDL validation tools.  It can say \"MUST match xxx\".  I think that will work well for those writing specifications in CDDL too.\r\n\r\nInteroperability and clarity are just as important here as in any other IETF document, so I think 2119 language is applicable.\r\n\r\nWhen I was working on EAT, Hannes made the comment to me that I should use more requirement-oriented language. I think he was right. I reworked a lot of the language and EAT is much better for it. ",
+          "createdAt": "2024-07-20T18:20:10Z",
+          "updatedAt": "2024-07-20T18:20:10Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "It's easy to get a lot of \"2+2 MUST be 4\", while still struggling to explain the concept of addition in general.  The examples you gave above are not statements about the tools and what they MUST do.  (I think a single \"MUST work right\" would work best, but wouldn't add anything either.)\r\nI think it is useful to attempt to further some truth in advertising about what a specific kind of tool is, such as a validating tool.  We could spend some time setting up a taxonomy.  I think that will change a lot in the next round where we add annotations as a first order concept, so now would not be the best time to do that work.",
+          "createdAt": "2024-07-20T20:08:54Z",
+          "updatedAt": "2024-07-20T20:08:54Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "PR_kwDOJHjjSc5n0fL4",
+      "title": "Don't complicate example 4 with generics",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/3",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Close #1",
+      "createdAt": "2024-02-24T13:30:02Z",
+      "updatedAt": "2024-02-26T08:20:25Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "c196f17571ab5f6dcba8841aebe35f5ed2844cd0",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "simplify-example-4",
+      "headRefOid": "aa074f03d3c59849e562a70f0b08db36016adab2",
+      "closedAt": "2024-02-26T08:20:25Z",
+      "mergedAt": "2024-02-26T08:20:25Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "66bce3c4042f93f465bd8aeed317b67478225481"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJHjjSc5xQu_c",
+          "commit": {
+            "abbreviatedOid": "aa074f0"
+          },
+          "author": "mguetschow",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-26T08:18:30Z",
+          "updatedAt": "2024-02-26T08:18:30Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOJHjjSc5s8nij",
+      "title": "Dot join",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/5",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-17T16:42:44Z",
+      "updatedAt": "2024-06-12T10:05:11Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "a6296dc699398ee964c0c98b0abf0eefa5099f37",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "dot-join",
+      "headRefOid": "f19b0be50cb58eda14366ec038fe6471d33169f4",
+      "closedAt": "2024-06-12T10:05:11Z",
+      "mergedAt": "2024-06-12T10:05:11Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "2dc55343609c7a028038f2458bbcb5d34b3cbc68"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOJHjjSc5yN198",
+      "title": "Close #4",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/6",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-06-12T10:15:46Z",
+      "updatedAt": "2024-06-12T10:17:44Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "2dc55343609c7a028038f2458bbcb5d34b3cbc68",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "close-4",
+      "headRefOid": "5a34e0707c0ef7586cc909169cf61cc583410f7c",
+      "closedAt": "2024-06-12T10:17:05Z",
+      "mergedAt": "2024-06-12T10:17:05Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "ab68e17c97c2f0e53e9a849948b60bf63a74c970"
+      },
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I merged this without waiting for a review so we can have a -05 ahead of today's interim.",
+          "createdAt": "2024-06-12T10:17:43Z",
+          "updatedAt": "2024-06-12T10:17:43Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOJHjjSc51_XBc",
+      "title": "Type columns",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/8",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Partially address #7\r\nThank you!\r\n",
+      "createdAt": "2024-07-20T15:11:13Z",
+      "updatedAt": "2024-07-21T13:13:59Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "ab68e17c97c2f0e53e9a849948b60bf63a74c970",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "type-columns",
+      "headRefOid": "2cbe2d33830d8485b956ad2e15e96a12efff3f5f",
+      "closedAt": "2024-07-21T13:13:59Z",
+      "mergedAt": "2024-07-21T13:13:59Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "feda1c2af7a17b3fc94e2b88958900e638c11cc5"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
