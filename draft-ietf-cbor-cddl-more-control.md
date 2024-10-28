@@ -61,6 +61,8 @@ normative:
         Technically equivalent specification text is available at <https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf>
 informative:
   RFC7464: jsonseq
+  RFC7493: i-json
+
 
 --- abstract
 
@@ -261,9 +263,10 @@ not `"0x1234"`.
 JSON Values
 -----------
 
-Some applications store complete JSON texts into text strings, the
-JSON value for which can easily be defined in CDDL.
-This is supported by a control operator similar to `.cbor` in {{Section
+Some applications store complete JSON texts {{-json}} into text strings, the
+JSON value for which can easily be defined in CDDL by using the default
+JSON-to-CBOR conversion rules provided by {{Section 6.2 of RFC8949@-cbor}}.
+This is supported by a control operator similar to `.cbor` as defined in {{Section
 3.8.4 of -cddl}}.
 
 | name    | meaning | reference |
@@ -276,12 +279,31 @@ claims = {iss: text, exp: text}
 ~~~
 {: sourcecode-name="example3.cddl"}
 
-Note that a `.jsonseq` is not provided for {{-jsonseq}}, as no use case
-for inclusion in CDDL is known yet.
+Notes:
 
-There is no way to constrain the use of blank space in data items to
-be validated; variants (e.g, not providing for any blank space) could
-be defined.
+* JSON has known interoperability problems {{-i-json}}.
+  While {{Section 4 of -i-json}} probably is not relevant to this
+  specification, {{Section 2 of -i-json}} provides requirements that
+  need to be followed to make use of the generic data model underlying
+  CDDL.
+  Note that the intention of {{Section 2.2 of -i-json}} is directly
+  supported by {{Section 6.2 of RFC8949@-cbor}}.
+  The recommendation to use text strings for representing numbers
+  outside JSON's interoperable range is a requirement on the
+  application data model and therefore needs to be reflected on the
+  right-hand side of the `.json` control operator.
+
+* This control operator provides no way to constrain the use of blank
+  space or other serialization variants in the JSON representation of
+  the data items; restrictions on the serialization to specific
+  variants (e.g, not providing for the addition of any insignificant
+  blank space, prescribing an order in which map entries are
+  serialized) could be defined in future control operators.
+
+* A `.jsonseq` is not provided in this document for {{-jsonseq}}, as no
+  use case for inclusion in CDDL is known at the time of writing;
+  again, future control operators could address this use case.
+
 
 Text Processing
 ===============
