@@ -364,9 +364,11 @@ cannot reach back into CDDL-specified elements like `.join` can do.
 >
 Implementation note: A validator implementation can use the marker
 elements to scan the text, isolating the variable elements.
-It also can build a parsing regexp ({{Section 6 of -iregexp}}) from the
-elements of the controller array, with capture groups for each
-element, and validate the captures against the elements of the array.
+It also can build a parsing regexp ({{Section 6 of -iregexp}}; see also
+{{Section 8 of -iregexp}} for security considerations related to
+regexps) from the elements of the controller array, with capture
+groups for each element, and validate the captures against the
+elements of the array.
 In the most general case, these implementation strategies can exhibit
 false negatives, where the implementation cannot find the structure
 that would be successfully validated using the controller; it is
