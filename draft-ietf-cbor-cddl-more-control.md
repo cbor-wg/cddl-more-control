@@ -126,7 +126,7 @@ then collectively referred to as "strings".
 Text Conversion
 ===============
 
-Byte Strings: Base16 (Hex), Base32, Base45, Base64
+Byte Strings: Base16 (Hex), Base32, Base45, Base64 {#base}
 ----------------------------
 
 A CDDL model often defines data that are byte strings in essence but
@@ -417,7 +417,8 @@ specification are implemented as of version 0.10.4.
 Security considerations
 =======================
 
-The security considerations of {{-cddl}} apply.
+The security considerations in {{Section 5 of -cddl}} apply, as well as those
+in {{Section 12 of -base}} for the control operators defined in {{base}}.
 
 --- back
 
