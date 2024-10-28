@@ -387,8 +387,8 @@ This document requests IANA to register the contents of
 {{tbl-iana-reqs}} into the registry
 "{{cddl-control-operators (CDDL Control Operators)<IANA.cddl}}" of {{IANA.cddl}}:
 
-| Name           | Reference |
-| `.b64u`        | \[RFC-XXXX]  |
+| Name           | Reference   |
+| `.b64u`        | \[RFC-XXXX] |
 | `.b64u-sloppy` | \[RFC-XXXX] |
 | `.b64c`        | \[RFC-XXXX] |
 | `.b64c-sloppy` | \[RFC-XXXX] |
