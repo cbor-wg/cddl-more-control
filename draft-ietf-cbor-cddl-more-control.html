@@ -19,23 +19,23 @@ JSON, Printf-style formatting) and for an operation on text.
 
 
     ' name="description">
-<meta content="xml2rfc 3.22.0" name="generator">
+<meta content="xml2rfc 3.23.2" name="generator">
 <meta content="Concise Data Definition Language" name="keyword">
 <meta content="Control Operator" name="keyword">
 <meta content="draft-ietf-cbor-cddl-more-control-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.22.0
-    Python 3.12.3
+  xml2rfc 3.23.2
+    Python 3.12.7
     ConfigArgParse 1.7
-    google-i18n-address 3.1.0
+    google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.4
     lxml 4.9.4
-    platformdirs 4.2.2
+    platformdirs 4.3.6
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.32.3
-    setuptools 69.5.1
+    setuptools 70.3.0
     wcwidth 0.2.13
 -->
 <link href="draft-ietf-cbor-cddl-more-control.xml" rel="alternate" type="application/rfc+xml">
@@ -172,31 +172,6 @@ JSON, Printf-style formatting) and for an operation on text.
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -213,6 +188,77 @@ JSON, Printf-style formatting) and for an operation on text.
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -225,6 +271,7 @@ JSON, Printf-style formatting) and for an operation on text.
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -243,8 +290,8 @@ body {
 
 /* headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -652,6 +699,12 @@ sub, sup {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
 }
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+  }
+}
 #toc nav ul {
   margin: 0 0.5em 0 0;
   padding: 0;
@@ -1035,11 +1088,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">CDDL control operators</td>
-<td class="right">July 2024</td>
+<td class="right">October 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Bormann</td>
-<td class="center">Expires 22 January 2025</td>
+<td class="center">Expires 2 May 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1052,12 +1105,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-cbor-cddl-more-control-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-21" class="published">21 July 2024</time>
+<time datetime="2024-10-29" class="published">29 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-22">22 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-05-02">2 May 2025</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1113,7 +1166,7 @@ JSON, Printf-style formatting) and for an operation on text.<a href="#section-ab
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1333,7 +1386,7 @@ then collectively referred to as "strings".<a href="#section-1.1-3" class="pilcr
       <h2 id="name-text-conversion">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-text-conversion" class="section-name selfRef">Text Conversion</a>
       </h2>
-<div id="byte-strings-base16-hex-base32-base45-base64">
+<div id="base">
 <section id="section-2.1">
         <h3 id="name-byte-strings-base16-hex-bas">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-byte-strings-base16-hex-bas" class="section-name selfRef">Byte Strings: Base16 (Hex), Base32, Base45, Base64</a>
@@ -1597,9 +1650,10 @@ not <code>"0x1234"</code>.<a href="#section-2.3-9" class="pilcrow">¶</a></p>
         <h3 id="name-json-values">
 <a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-json-values" class="section-name selfRef">JSON Values</a>
         </h3>
-<p id="section-2.4-1">Some applications store complete JSON texts into text strings, the
-JSON value for which can easily be defined in CDDL.
-This is supported by a control operator similar to <code>.cbor</code> in <span><a href="https://rfc-editor.org/rfc/rfc8610#section-3.8.4" class="relref">Section 3.8.4</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.4-1">Some applications store complete JSON texts <span>[<a href="#STD90" class="cite xref">STD90</a>]</span> into text strings, the
+JSON value for which can easily be defined in CDDL by using the default
+JSON-to-CBOR conversion rules provided by Section <a href="https://rfc-editor.org/rfc/rfc8949#section-6.2" class="relref">6.2</a> of RFC 8949 <span>[<a href="#STD94" class="cite xref">STD94</a>]</span>.
+This is supported by a control operator similar to <code>.cbor</code> as defined in <span><a href="https://rfc-editor.org/rfc/rfc8610#section-3.8.4" class="relref">Section 3.8.4</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
 <span id="name-control-operator-for-text-co"></span><table class="center" id="table-5">
           <caption>
 <a href="#table-5" class="selfRef">Table 5</a>:
@@ -1630,11 +1684,35 @@ embedded-claims = text .json claims
 claims = {iss: text, exp: text}
 </pre><a href="#section-2.4-3" class="pilcrow">¶</a>
 </div>
-<p id="section-2.4-4">Note that a <code>.jsonseq</code> is not provided for <span>[<a href="#RFC7464" class="cite xref">RFC7464</a>]</span>, as no use case
-for inclusion in CDDL is known yet.<a href="#section-2.4-4" class="pilcrow">¶</a></p>
-<p id="section-2.4-5">There is no way to constrain the use of blank space in data items to
-be validated; variants (e.g, not providing for any blank space) could
-be defined.<a href="#section-2.4-5" class="pilcrow">¶</a></p>
+<p id="section-2.4-4">Notes:<a href="#section-2.4-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.4-5.1">
+            <p id="section-2.4-5.1.1">JSON has known interoperability problems <span>[<a href="#RFC7493" class="cite xref">RFC7493</a>]</span>.
+While <span><a href="https://rfc-editor.org/rfc/rfc7493#section-4" class="relref">Section 4</a> of [<a href="#RFC7493" class="cite xref">RFC7493</a>]</span> probably is not relevant to this
+specification, <span><a href="https://rfc-editor.org/rfc/rfc7493#section-2" class="relref">Section 2</a> of [<a href="#RFC7493" class="cite xref">RFC7493</a>]</span> provides requirements that
+need to be followed to make use of the generic data model underlying
+CDDL.
+Note that the intention of <span><a href="https://rfc-editor.org/rfc/rfc7493#section-2.2" class="relref">Section 2.2</a> of [<a href="#RFC7493" class="cite xref">RFC7493</a>]</span> is directly
+supported by Section <a href="https://rfc-editor.org/rfc/rfc8949#section-6.2" class="relref">6.2</a> of RFC 8949 <span>[<a href="#STD94" class="cite xref">STD94</a>]</span>.
+The recommendation to use text strings for representing numbers
+outside JSON's interoperable range is a requirement on the
+application data model and therefore needs to be reflected on the
+right-hand side of the <code>.json</code> control operator.<a href="#section-2.4-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.4-5.2">
+            <p id="section-2.4-5.2.1">This control operator provides no way to constrain the use of blank
+space or other serialization variants in the JSON representation of
+the data items; restrictions on the serialization to specific
+variants (e.g, not providing for the addition of any insignificant
+blank space, prescribing an order in which map entries are
+serialized) could be defined in future control operators.<a href="#section-2.4-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.4-5.3">
+            <p id="section-2.4-5.3.1">A <code>.jsonseq</code> is not provided in this document for <span>[<a href="#RFC7464" class="cite xref">RFC7464</a>]</span>, as no
+use case for inclusion in CDDL is known at the time of writing;
+again, future control operators could address this use case.<a href="#section-2.4-5.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
 </section>
@@ -1720,9 +1798,11 @@ cannot reach back into CDDL-specified elements like <code>.join</code> can do.<a
 <aside id="section-3.1-7">
           <p id="section-3.1-7.1">Implementation note: A validator implementation can use the marker
 elements to scan the text, isolating the variable elements.
-It also can build a parsing regexp (<span><a href="https://rfc-editor.org/rfc/rfc9485#section-6" class="relref">Section 6</a> of [<a href="#RFC9485" class="cite xref">RFC9485</a>]</span>) from the
-elements of the controller array, with capture groups for each
-element, and validate the captures against the elements of the array.
+It also can build a parsing regexp (<span><a href="https://rfc-editor.org/rfc/rfc9485#section-6" class="relref">Section 6</a> of [<a href="#RFC9485" class="cite xref">RFC9485</a>]</span>; see also
+<span><a href="https://rfc-editor.org/rfc/rfc9485#section-8" class="relref">Section 8</a> of [<a href="#RFC9485" class="cite xref">RFC9485</a>]</span> for security considerations related to
+regexps) from the elements of the controller array, with capture
+groups for each element, and validate the captures against the
+elements of the array.
 In the most general case, these implementation strategies can exhibit
 false negatives, where the implementation cannot find the structure
 that would be successfully validated using the controller; it is
@@ -1861,7 +1941,8 @@ specification are implemented as of version 0.10.4.<a href="#section-5-2" class=
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security considerations</a>
       </h2>
-<p id="section-6-1">The security considerations of <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> apply.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">The security considerations in <span><a href="https://rfc-editor.org/rfc/rfc8610#section-5" class="relref">Section 5</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> apply, as well as those
+in <span><a href="https://rfc-editor.org/rfc/rfc4648#section-12" class="relref">Section 12</a> of [<a href="#RFC4648" class="cite xref">RFC4648</a>]</span> for the control operators defined in <a href="#base" class="auto internal xref">Section 2.1</a>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -1893,7 +1974,7 @@ Technically equivalent specification text is available at <a href="https://web.a
 <dd class="break"></dd>
 <dt id="IANA.cddl">[IANA.cddl]</dt>
         <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"Concise Data Definition Language (CDDL)"</span>, <time datetime="2019-03-28" class="refDate">28 March 2019</time>, <span>&lt;<a href="https://www.iana.org/assignments/cddl">https://www.iana.org/assignments/cddl</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Concise Data Definition Language (CDDL)"</span>, <span>&lt;<a href="https://www.iana.org/assignments/cddl">https://www.iana.org/assignments/cddl</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4648">[RFC4648]</dt>
         <dd>
@@ -1943,6 +2024,10 @@ Technically equivalent specification text is available at <a href="https://web.a
 <dt id="RFC7464">[RFC7464]</dt>
         <dd>
 <span class="refAuthor">Williams, N.</span>, <span class="refTitle">"JavaScript Object Notation (JSON) Text Sequences"</span>, <span class="seriesInfo">RFC 7464</span>, <span class="seriesInfo">DOI 10.17487/RFC7464</span>, <time datetime="2015-02" class="refDate">February 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7464">https://www.rfc-editor.org/rfc/rfc7464</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7493">[RFC7493]</dt>
+        <dd>
+<span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The I-JSON Message Format"</span>, <span class="seriesInfo">RFC 7493</span>, <span class="seriesInfo">DOI 10.17487/RFC7493</span>, <time datetime="2015-03" class="refDate">March 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7493">https://www.rfc-editor.org/rfc/rfc7493</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7951">[RFC7951]</dt>
         <dd>

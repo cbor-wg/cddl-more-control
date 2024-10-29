@@ -4,8 +4,8 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                    Universität Bremen TZI
-Intended status: Standards Track                            21 July 2024
-Expires: 22 January 2025
+Intended status: Standards Track                         29 October 2024
+Expires: 2 May 2025
 
 
                     More Control Operators for CDDL
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Bormann                  Expires 22 January 2025                [Page 1]
+Bormann                    Expires 2 May 2025                   [Page 1]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft           CDDL control operators                July 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 January 2025.
+   This Internet-Draft will expire on 2 May 2025.
 
 Copyright Notice
 
@@ -90,14 +90,14 @@ Table of Contents
      2.4.  JSON Values . . . . . . . . . . . . . . . . . . . . . . .   7
    3.  Text Processing . . . . . . . . . . . . . . . . . . . . . . .   8
      3.1.  Join  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
-   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
-   5.  Implementation Status . . . . . . . . . . . . . . . . . . . .  10
-   6.  Security considerations . . . . . . . . . . . . . . . . . . .  10
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .  12
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  12
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  13
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
+   5.  Implementation Status . . . . . . . . . . . . . . . . . . . .  11
+   6.  Security considerations . . . . . . . . . . . . . . . . . . .  12
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  13
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  14
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  14
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bormann                  Expires 22 January 2025                [Page 2]
+Bormann                    Expires 2 May 2025                   [Page 2]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
    The present document defines a number of additional generally
@@ -165,9 +165,9 @@ Internet-Draft           CDDL control operators                July 2024
 
 
 
-Bormann                  Expires 22 January 2025                [Page 3]
+Bormann                    Expires 2 May 2025                   [Page 3]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
    This specification uses terminology from [RFC8610].  In particular,
@@ -221,9 +221,9 @@ Internet-Draft           CDDL control operators                July 2024
 
 
 
-Bormann                  Expires 22 January 2025                [Page 4]
+Bormann                    Expires 2 May 2025                   [Page 4]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
      +==============+=======================+========================+
@@ -277,9 +277,9 @@ Internet-Draft           CDDL control operators                July 2024
 
 
 
-Bormann                  Expires 22 January 2025                [Page 5]
+Bormann                    Expires 2 May 2025                   [Page 5]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
    The additional designation "sloppy" indicates that the text string is
@@ -333,9 +333,9 @@ Internet-Draft           CDDL control operators                July 2024
 
 
 
-Bormann                  Expires 22 January 2025                [Page 6]
+Bormann                    Expires 2 May 2025                   [Page 6]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
    The control operator .printf allows the modeling of text strings that
@@ -374,10 +374,11 @@ Internet-Draft           CDDL control operators                July 2024
 
 2.4.  JSON Values
 
-   Some applications store complete JSON texts into text strings, the
-   JSON value for which can easily be defined in CDDL.  This is
-   supported by a control operator similar to .cbor in Section 3.8.4 of
-   [RFC8610].
+   Some applications store complete JSON texts [STD90] into text
+   strings, the JSON value for which can easily be defined in CDDL by
+   using the default JSON-to-CBOR conversion rules provided by
+   Section 6.2 of RFC 8949 [STD94].  This is supported by a control
+   operator similar to .cbor as defined in Section 3.8.4 of [RFC8610].
 
 
 
@@ -388,10 +389,9 @@ Internet-Draft           CDDL control operators                July 2024
 
 
 
-
-Bormann                  Expires 22 January 2025                [Page 7]
+Bormann                    Expires 2 May 2025                   [Page 7]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
                       +=======+=========+===========+
@@ -407,12 +407,30 @@ Internet-Draft           CDDL control operators                July 2024
    embedded-claims = text .json claims
    claims = {iss: text, exp: text}
 
-   Note that a .jsonseq is not provided for [RFC7464], as no use case
-   for inclusion in CDDL is known yet.
+   Notes:
 
-   There is no way to constrain the use of blank space in data items to
-   be validated; variants (e.g, not providing for any blank space) could
-   be defined.
+   *  JSON has known interoperability problems [RFC7493].  While
+      Section 4 of [RFC7493] probably is not relevant to this
+      specification, Section 2 of [RFC7493] provides requirements that
+      need to be followed to make use of the generic data model
+      underlying CDDL.  Note that the intention of Section 2.2 of
+      [RFC7493] is directly supported by Section 6.2 of RFC 8949
+      [STD94].  The recommendation to use text strings for representing
+      numbers outside JSON's interoperable range is a requirement on the
+      application data model and therefore needs to be reflected on the
+      right-hand side of the .json control operator.
+
+   *  This control operator provides no way to constrain the use of
+      blank space or other serialization variants in the JSON
+      representation of the data items; restrictions on the
+      serialization to specific variants (e.g, not providing for the
+      addition of any insignificant blank space, prescribing an order in
+      which map entries are serialized) could be defined in future
+      control operators.
+
+   *  A .jsonseq is not provided in this document for [RFC7464], as no
+      use case for inclusion in CDDL is known at the time of writing;
+      again, future control operators could address this use case.
 
 3.  Text Processing
 
@@ -420,6 +438,17 @@ Internet-Draft           CDDL control operators                July 2024
 
    Often, text strings need to be constructed out of parts that can best
    be modeled as an array.
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 8]
+
+Internet-Draft           CDDL control operators             October 2024
+
 
          +=======+==================================+===========+
          | name  | meaning                          | reference |
@@ -441,14 +470,6 @@ Internet-Draft           CDDL control operators                July 2024
 
       Figure 1: Using the .join operator to build dotted-decimal IPv4
                                  addresses
-
-
-
-
-Bormann                  Expires 22 January 2025                [Page 8]
-
-Internet-Draft           CDDL control operators                July 2024
-
 
    The elements of the controller array need to be strings (text or byte
    strings).  The control operator matches a data item if that data item
@@ -476,17 +497,28 @@ Internet-Draft           CDDL control operators                July 2024
    operators (see Section 3 of [RFC9165]) may be useful; however, these
    cannot reach back into CDDL-specified elements like .join can do.
 
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 9]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
       |  Implementation note: A validator implementation can use the
       |  marker elements to scan the text, isolating the variable
       |  elements.  It also can build a parsing regexp (Section 6 of
-      |  [RFC9485]) from the elements of the controller array, with
-      |  capture groups for each element, and validate the captures
-      |  against the elements of the array.  In the most general case,
-      |  these implementation strategies can exhibit false negatives,
-      |  where the implementation cannot find the structure that would
-      |  be successfully validated using the controller; it is
-      |  RECOMMENDED that implementations provide full coverage at least
-      |  for the marker-based subset outlined in the previous paragraph.
+      |  [RFC9485]; see also Section 8 of [RFC9485] for security
+      |  considerations related to regexps) from the elements of the
+      |  controller array, with capture groups for each element, and
+      |  validate the captures against the elements of the array.  In
+      |  the most general case, these implementation strategies can
+      |  exhibit false negatives, where the implementation cannot find
+      |  the structure that would be successfully validated using the
+      |  controller; it is RECOMMENDED that implementations provide full
+      |  coverage at least for the marker-based subset outlined in the
+      |  previous paragraph.
 
 4.  IANA Considerations
 
@@ -501,9 +533,33 @@ Internet-Draft           CDDL control operators                July 2024
 
 
 
-Bormann                  Expires 22 January 2025                [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 10]
 
-Internet-Draft           CDDL control operators                July 2024
+Internet-Draft           CDDL control operators             October 2024
 
 
                        +==============+============+
@@ -550,17 +606,23 @@ Internet-Draft           CDDL control operators                July 2024
    operators defined in the present revision of this specification are
    implemented as of version 0.10.4.
 
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 11]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
 6.  Security considerations
 
-   The security considerations of [RFC8610] apply.
-
-
-
-
-Bormann                  Expires 22 January 2025               [Page 10]
-
-Internet-Draft           CDDL control operators                July 2024
-
+   The security considerations in Section 5 of [RFC8610] apply, as well
+   as those in Section 12 of [RFC4648] for the control operators defined
+   in Section 2.1.
 
 7.  References
 
@@ -592,8 +654,8 @@ Internet-Draft           CDDL control operators                July 2024
               c17_updated_proposed_fdis.pdf)
 
    [IANA.cddl]
-              IANA, "Concise Data Definition Language (CDDL)", 28 March
-              2019, <https://www.iana.org/assignments/cddl>.
+              IANA, "Concise Data Definition Language (CDDL)",
+              <https://www.iana.org/assignments/cddl>.
 
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
@@ -605,18 +667,17 @@ Internet-Draft           CDDL control operators                July 2024
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
+
+
+Bormann                    Expires 2 May 2025                  [Page 12]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
    [RFC9165]  Bormann, C., "Additional Control Operators for the Concise
               Data Definition Language (CDDL)", RFC 9165,
               DOI 10.17487/RFC9165, December 2021,
               <https://www.rfc-editor.org/rfc/rfc9165>.
-
-
-
-
-Bormann                  Expires 22 January 2025               [Page 11]
-
-Internet-Draft           CDDL control operators                July 2024
-
 
    [RFC9285]  Fältström, P., Ljunggren, F., and D.W. van Gulik, "The
               Base45 Data Encoding", RFC 9285, DOI 10.17487/RFC9285,
@@ -651,9 +712,23 @@ Internet-Draft           CDDL control operators                July 2024
               Sequences", RFC 7464, DOI 10.17487/RFC7464, February 2015,
               <https://www.rfc-editor.org/rfc/rfc7464>.
 
+   [RFC7493]  Bray, T., Ed., "The I-JSON Message Format", RFC 7493,
+              DOI 10.17487/RFC7493, March 2015,
+              <https://www.rfc-editor.org/rfc/rfc7493>.
+
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7951>.
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 13]
+
+Internet-Draft           CDDL control operators             October 2024
+
 
    [RFC9090]  Bormann, C., "Concise Binary Object Representation (CBOR)
               Tags for Object Identifiers", RFC 9090,
@@ -664,15 +739,6 @@ Acknowledgements
 
    Henk Birkholz suggested the need for many of the control operators
    defined here.
-
-
-
-
-
-Bormann                  Expires 22 January 2025               [Page 12]
-
-Internet-Draft           CDDL control operators                July 2024
-
 
 Author's Address
 
@@ -715,14 +781,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-Bormann                  Expires 22 January 2025               [Page 13]
+Bormann                    Expires 2 May 2025                  [Page 14]
