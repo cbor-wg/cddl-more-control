@@ -1,0 +1,784 @@
+
+
+
+
+Network Working Group                                         C. Bormann
+Internet-Draft                                    Universität Bremen TZI
+Intended status: Standards Track                         29 October 2024
+Expires: 2 May 2025
+
+
+                    More Control Operators for CDDL
+                draft-ietf-cbor-cddl-more-control-latest
+
+Abstract
+
+   The Concise Data Definition Language (CDDL), standardized in RFC
+   8610, provides "control operators" as its main language extension
+   point.  RFCs have added to this extension point both in an
+   application-specific and a more general way.
+
+   The present document defines a number of additional generally
+   applicable control operators for text conversion (Bytes, Integers,
+   JSON, Printf-style formatting) and for an operation on text.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at https://cbor-
+   wg.github.io/cddl-more-control/.  Status information for this
+   document may be found at https://datatracker.ietf.org/doc/draft-ietf-
+   cbor-cddl-more-control/.
+
+   Discussion of this document takes place on the Concise Binary Object
+   Representation (CBOR) Maintenance and Extensions Working Group
+   mailing list (mailto:cbor@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/cbor/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/cbor/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/cbor-wg/cddl-more-control.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 1]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 2 May 2025.
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Text Conversion . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64  . . .   4
+     2.2.  Numbers . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     2.3.  Printf-style Formatting . . . . . . . . . . . . . . . . .   7
+     2.4.  JSON Values . . . . . . . . . . . . . . . . . . . . . . .   8
+   3.  Text Processing . . . . . . . . . . . . . . . . . . . . . . .   8
+     3.1.  Join  . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
+   5.  Implementation Status . . . . . . . . . . . . . . . . . . . .  11
+   6.  Security considerations . . . . . . . . . . . . . . . . . . .  12
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  13
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  14
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  14
+
+1.  Introduction
+
+   The Concise Data Definition Language (CDDL), standardized in
+   [RFC8610], provides "control operators" as its main language
+   extension point (Section 3.8 of [RFC8610]).  RFCs have added to this
+   extension point both in an application-specific [RFC9090] and a more
+   general [RFC9165] way.
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 2]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   The present document defines a number of additional generally
+   applicable control operators:
+
+    +===============+=========+=======+==============================+
+    | Name          | t       | c     | Purpose                      |
+    +===============+=========+=======+==============================+
+    | .b64u, .b64c  | text    | bytes | Base64 representation of     |
+    |               |         |       | byte strings                 |
+    +---------------+---------+-------+------------------------------+
+    | .b64u-sloppy, | text    | bytes | (sloppy-tolerant variants of |
+    | .b64c-sloppy  |         |       | the above)                   |
+    +---------------+---------+-------+------------------------------+
+    | .hex, .hexlc, | text    | bytes | Base16 representation of     |
+    | .hexuc        |         |       | byte strings                 |
+    +---------------+---------+-------+------------------------------+
+    | .b32, .h32    | text    | bytes | Base32 representation of     |
+    |               |         |       | byte strings                 |
+    +---------------+---------+-------+------------------------------+
+    | .b45          | text    | bytes | Base45 representation of     |
+    |               |         |       | byte strings                 |
+    +---------------+---------+-------+------------------------------+
+    | .decimal      | text    | int   | Text representation of       |
+    |               |         |       | integer numbers              |
+    +---------------+---------+-------+------------------------------+
+    | .printf       | text    | array | Printf-formatted text        |
+    |               |         |       | representation of data items |
+    +---------------+---------+-------+------------------------------+
+    | .json         | text    | any   | Text representation of JSON  |
+    |               |         |       | values                       |
+    +---------------+---------+-------+------------------------------+
+    | .join         | text or | array | Build text or byte string    |
+    |               | bytes   |       | from array of components     |
+    +---------------+---------+-------+------------------------------+
+
+             Table 1: New control operators in this document,
+    t = target type (left-hand side), c = controller type (right-hand
+                                  side)
+
+1.1.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   [BCP14] (RFC2119) (RFC8174) when, and only when, they appear in all
+   capitals, as shown here.
+
+   Regular expressions mentioned in the text are as defined in
+   [RFC9485].
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 3]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   This specification uses terminology from [RFC8610].  In particular,
+   with respect to control operators, "target" refers to the left-hand
+   side operand, and "controller" to the right-hand side operand.
+   "Tool" refers to tools along the lines of that described in
+   Appendix F of [RFC8610].  Note also that the data model underlying
+   CDDL provides for text strings as well as byte strings as two
+   separate types, which are then collectively referred to as "strings".
+
+2.  Text Conversion
+
+2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64
+
+   A CDDL model often defines data that are byte strings in essence but
+   need to be transported in various encoded forms, such as base64 or
+   hex.  This section defines a number of control operators to model
+   these conversions.
+
+   The control operators generally are of a form that could be used like
+   this:
+
+   signature-for-json = text .b64u signature
+   signature = bytes .cbor COSE_Sign1
+
+   The specification of these control operators is complicated by the
+   large number of transformations in use.  Inspired by Section 8 of RFC
+   8949 [STD94], we use representations defined in [RFC4648] with the
+   following names:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 4]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+     +==============+=======================+========================+
+     | name         | meaning               | reference              |
+     +==============+=======================+========================+
+     | .b64u        | Base64URL, no padding | Section 5 of [RFC4648] |
+     +--------------+-----------------------+------------------------+
+     | .b64u-sloppy | Base64URL, no         | Section 5 of [RFC4648] |
+     |              | padding, sloppy       |                        |
+     +--------------+-----------------------+------------------------+
+     | .b64c        | Base64 classic,       | Section 4 of [RFC4648] |
+     |              | padding               |                        |
+     +--------------+-----------------------+------------------------+
+     | .b64c-sloppy | Base64 classic,       | Section 4 of [RFC4648] |
+     |              | padding, sloppy       |                        |
+     +--------------+-----------------------+------------------------+
+     | .b32         | Base32, no padding    | Section 6 of [RFC4648] |
+     +--------------+-----------------------+------------------------+
+     | .h32         | Base32/hex alphabet,  | Section 7 of [RFC4648] |
+     |              | no padding            |                        |
+     +--------------+-----------------------+------------------------+
+     | .hex         | Base16 (hex), either  | Section 8 of [RFC4648] |
+     |              | case                  |                        |
+     +--------------+-----------------------+------------------------+
+     | .hexlc       | Base16 (hex), lower   | Section 8 of [RFC4648] |
+     |              | case                  |                        |
+     +--------------+-----------------------+------------------------+
+     | .hexuc       | Base16 (hex), upper   | Section 8 of [RFC4648] |
+     |              | case                  |                        |
+     +--------------+-----------------------+------------------------+
+     | .b45         | Base45                | [RFC9285]              |
+     +--------------+-----------------------+------------------------+
+
+       Table 2: Control Operators for Text Conversion of byte strings
+
+   Note that this specification is somewhat opinionated here: It does
+   not provide base64url, base32 or base32hex encoding with padding, or
+   base64 classic without padding.  Experience indicates that these
+   combinations only ever occur in error, so the usability of CDDL is
+   increased by not providing them in the first place.  Also, adding "c"
+   makes sure that any decision for classic base64 is actively taken.
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 5]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   These control operators are "strict" in their matching, i.e., they
+   only match base encodings that conform to the mandates of their
+   defining documents.  Note that this also means that .b64u and .b64c
+   only match text strings composed of the set of characters defined for
+   each of them, respectively.  (This is maybe worth pointing out here
+   explicitly as this contrasts with the "b64" literal prefix that can
+   be used to notate byte strings in CDDL source code, which simply
+   accepts characters from either alphabet.  This behavior is different
+   from the matching behavior of the four base64 control operators
+   defined here.)
+
+   The additional designation "sloppy" indicates that the text string is
+   not validated for any additional bits being zero, in variance to what
+   is specified in the paragraph behind table 1 in Section 4 of
+   [RFC4648].  Note that the present specification is opinionated again
+   in not specifying a sloppy variant of base32 or base32/hex, as no
+   legacy use of sloppy base32(/hex) was known at the time of writing.
+   Base45 is known to be suboptimal for use in environments with limited
+   data transparency (such as URLs), but is included because of its
+   close relationship to QR codes and its wide use in health informatics
+   (note that base45 is strongly specified not to allow sloppy forms of
+   encoding).
+
+2.2.  Numbers
+
+                +==========+=================+===========+
+                | name     | meaning         | reference |
+                +==========+=================+===========+
+                | .decimal | Decimal Integer | ---       |
+                +----------+-----------------+-----------+
+
+                    Table 3: Control Operator for Text
+                          Conversion of Integers
+
+   The control operator .decimal allows the modeling of text strings
+   that carry numeric information in decimal form, such as in the
+   uint64/int64 formats of YANG-JSON [RFC7951].
+
+   yang-json-sid = text .decimal (0..9223372036854775807)
+
+   Again, the specification is opinionated by only providing integer
+   numbers without leading zeros, i.e., the decimal numbers match the
+   regular expression 0|-?[1-9][0-9]* (of course, further restricted by
+   the control type).  See the next section for more flexibility, and
+   for octal, hexadecimal, or binary conversions.
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 6]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+2.3.  Printf-style Formatting
+
+        +=========+===================================+===========+
+        | name    | meaning                           | reference |
+        +=========+===================================+===========+
+        | .printf | Printf-formatting of data item(s) | ---       |
+        +---------+-----------------------------------+-----------+
+
+          Table 4: Control Operator for Printf-formatting of data
+                                  item(s)
+
+   The control operator .printf allows the modeling of text strings that
+   carry various formatted information, as long as the format can be
+   represented in Printf-style formatting strings as they are used in
+   the C language (see Section 7.21.6.1 of [C]).
+
+   The controller (right-hand side) of the .printf control is an array
+   of one Printf-style format string and zero or more data items that
+   fit the individual conversion specifications in the format string.
+   The construct matches a text string representing the textual output
+   of an equivalent C-language printf function call that is given the
+   format string and the data items following it in the array.
+
+   From the printf specification in the C language, length modifiers
+   (paragraph 7) are not used and MUST NOT be included in the format
+   string.  The 's' conversion specifier (paragraph 8) is used to
+   interpolate a text string in UTF-8 form.  The 'c' conversion
+   specifier (paragraph 8) represents a single Unicode scalar value as a
+   UTF-8 character.  The 'p' and 'n' conversion specifiers (paragraph 8)
+   are not used and MUST NOT be included in the format string.
+
+   In the following example, my_alg_19 matches the text string "0x0013":
+
+   my_alg_19 = hexlabel<19>
+   hexlabel<K> = text .printf (["0x%04x", K])
+
+   The data items in the controller array do not need to be literals, as
+   for example in:
+
+   any_alg = hexlabel<1..20>
+   hexlabel<K> = text .printf (["0x%04x", K])
+
+   Here, any_alg matches the text strings "0x0013" or "0x0001" but not
+   "0x1234".
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 7]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+2.4.  JSON Values
+
+   Some applications store complete JSON texts [STD90] into text
+   strings, the JSON value for which can easily be defined in CDDL by
+   using the default JSON-to-CBOR conversion rules provided by
+   Section 6.2 of RFC 8949 [STD94].  This is supported by a control
+   operator similar to .cbor as defined in Section 3.8.4 of [RFC8610].
+
+                      +=======+=========+===========+
+                      | name  | meaning | reference |
+                      +=======+=========+===========+
+                      | .json | JSON    | [STD90]   |
+                      +-------+---------+-----------+
+
+                         Table 5: Control Operator
+                        for Text Conversion of JSON
+                                   values
+
+   embedded-claims = text .json claims
+   claims = {iss: text, exp: text}
+
+   Notes:
+
+   *  JSON has known interoperability problems [RFC7493].  While
+      Section 4 of [RFC7493] probably is not relevant to this
+      specification, Section 2 of [RFC7493] provides requirements that
+      need to be followed to make use of the generic data model
+      underlying CDDL.  Note that the intention of Section 2.2 of
+      [RFC7493] is directly supported by Section 6.2 of RFC 8949
+      [STD94].  The recommendation to use text strings for representing
+      numbers outside JSON's interoperable range is a requirement on the
+      application data model and therefore needs to be reflected on the
+      right-hand side of the .json control operator.
+
+   *  This control operator provides no way to constrain the use of
+      blank space or other serialization variants in the JSON
+      representation of the data items; restrictions on the
+      serialization to specific variants (e.g, not providing for the
+      addition of any insignificant blank space, prescribing an order in
+      which map entries are serialized) could be defined in future
+      control operators.
+
+   *  A .jsonseq is not provided in this document for [RFC7464], as no
+      use case for inclusion in CDDL is known at the time of writing;
+      again, future control operators could address this use case.
+
+3.  Text Processing
+
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 8]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+3.1.  Join
+
+   Often, text strings need to be constructed out of parts that can best
+   be modeled as an array.
+
+         +=======+==================================+===========+
+         | name  | meaning                          | reference |
+         +=======+==================================+===========+
+         | .join | concatenate elements of an array | ---       |
+         +-------+----------------------------------+-----------+
+
+            Table 6: Control Operator for Text Generation from
+                                  Arrays
+
+   For example, an IPv4 address in dotted-decimal might be modeled as in
+   Figure 1.
+
+   legacy-ip-address = text .join legacy-ip-address-elements
+   legacy-ip-address-elements = [bytetext, ".", bytetext, ".",
+                                 bytetext, ".", bytetext]
+   bytetext = text .decimal byte
+   byte = 0..255
+
+      Figure 1: Using the .join operator to build dotted-decimal IPv4
+                                 addresses
+
+   The elements of the controller array need to be strings (text or byte
+   strings).  The control operator matches a data item if that data item
+   is also a string, built by concatenating the strings in the array.
+   The result of this concatenation is of the same kind of string (text
+   or bytes) as the first element of the array.  (If there is no element
+   in the array, the .join construct matches either kind of empty
+   string, obviously further constrained by the control operator
+   target.)  The concatenation is performed on the sequences of bytes in
+   the strings.  If the result of the concatenation is a text string,
+   the resulting sequence of bytes only matches the target data item if
+   that result is a valid text string (i.e., valid UTF-8; note that in
+   contrast to the algorithm used in Section 3.2.3 of RFC 8949 [STD94]
+   there is no need that all individual byte sequences going into the
+   concatenation constitute valid text strings).
+
+   Note that this control operator is hard to validate in the most
+   general case, as this would require full parser functionality.
+   Simple implementation strategies will use array elements with
+   constant values as guideposts ("markers", such as the "." in
+   Figure 1) for isolating the variable elements that need further
+   validation at the CDDL data model level.  It is therefore recommended
+   to limit the use of .join to simple arrangements where the array
+
+
+
+Bormann                    Expires 2 May 2025                   [Page 9]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   elements are laid out explicitly and there are no adjacent variable
+   elements without intervening constant values, and where these
+   constant values do not occur within the text described by the
+   variable elements.
+   If more complex parsing functionality is required, the ABNF control
+   operators (see Section 3 of [RFC9165]) may be useful; however, these
+   cannot reach back into CDDL-specified elements like .join can do.
+
+      |  Implementation note: A validator implementation can use the
+      |  marker elements to scan the text, isolating the variable
+      |  elements.  It also can build a parsing regexp (Section 6 of
+      |  [RFC9485]; see also Section 8 of [RFC9485] for security
+      |  considerations related to regexps) from the elements of the
+      |  controller array, with capture groups for each element, and
+      |  validate the captures against the elements of the array.  In
+      |  the most general case, these implementation strategies can
+      |  exhibit false negatives, where the implementation cannot find
+      |  the structure that would be successfully validated using the
+      |  controller; it is RECOMMENDED that implementations provide full
+      |  coverage at least for the marker-based subset outlined in the
+      |  previous paragraph.
+
+4.  IANA Considerations
+
+
+   // RFC Editor: please replace RFC-XXXX with the RFC number of this
+   // RFC and remove this note.
+
+   This document requests IANA to register the contents of Table 7 into
+   the registry "CDDL Control Operators" of [IANA.cddl]:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 10]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+                       +==============+============+
+                       | Name         | Reference  |
+                       +==============+============+
+                       | .b64u        | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .b64u-sloppy | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .b64c        | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .b64c-sloppy | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .b45         | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .b32         | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .h32         | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .hex         | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .hexlc       | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .hexuc       | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .decimal     | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .printf      | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .json        | [RFC-XXXX] |
+                       +--------------+------------+
+                       | .join        | [RFC-XXXX] |
+                       +--------------+------------+
+
+                            Table 7: New control
+                              operators to be
+                                 registered
+
+5.  Implementation Status
+
+   This section is to be removed before publishing as an RFC.
+
+   In the CDDL tool described in Appendix F of [RFC8610], the control
+   operators defined in the present revision of this specification are
+   implemented as of version 0.10.4.
+
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 11]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+6.  Security considerations
+
+   The security considerations in Section 5 of [RFC8610] apply, as well
+   as those in Section 12 of [RFC4648] for the control operators defined
+   in Section 2.1.
+
+7.  References
+
+7.1.  Normative References
+
+   [BCP14]    Best Current Practice 14,
+              <https://www.rfc-editor.org/info/bcp14>.
+              At the time of writing, this BCP comprises the following:
+
+              Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+              Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+   [C]        International Organization for Standardization,
+              "Information technology — Programming languages — C",
+              Fourth Edition, ISO/IEC 9899:2018, June 2018,
+              <https://www.iso.org/standard/74528.html>.  Technically
+              equivalent specification text is available at
+              https://web.archive.org/web/20181230041359if_/
+              http://www.open- std.org/jtc1/sc22/wg14/www/abq/
+              c17_updated_proposed_fdis.pdf
+              (https://web.archive.org/web/20181230041359if_/
+              http://www.open- std.org/jtc1/sc22/wg14/www/abq/
+              c17_updated_proposed_fdis.pdf)
+
+   [IANA.cddl]
+              IANA, "Concise Data Definition Language (CDDL)",
+              <https://www.iana.org/assignments/cddl>.
+
+   [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
+              Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
+              <https://www.rfc-editor.org/rfc/rfc4648>.
+
+   [RFC8610]  Birkholz, H., Vigano, C., and C. Bormann, "Concise Data
+              Definition Language (CDDL): A Notational Convention to
+              Express Concise Binary Object Representation (CBOR) and
+              JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
+              June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 12]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   [RFC9165]  Bormann, C., "Additional Control Operators for the Concise
+              Data Definition Language (CDDL)", RFC 9165,
+              DOI 10.17487/RFC9165, December 2021,
+              <https://www.rfc-editor.org/rfc/rfc9165>.
+
+   [RFC9285]  Fältström, P., Ljunggren, F., and D.W. van Gulik, "The
+              Base45 Data Encoding", RFC 9285, DOI 10.17487/RFC9285,
+              August 2022, <https://www.rfc-editor.org/rfc/rfc9285>.
+
+   [RFC9485]  Bormann, C. and T. Bray, "I-Regexp: An Interoperable
+              Regular Expression Format", RFC 9485,
+              DOI 10.17487/RFC9485, October 2023,
+              <https://www.rfc-editor.org/rfc/rfc9485>.
+
+   [STD90]    Internet Standard 90,
+              <https://www.rfc-editor.org/info/std90>.
+              At the time of writing, this STD comprises the following:
+
+              Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://www.rfc-editor.org/info/rfc8259>.
+
+   [STD94]    Internet Standard 94,
+              <https://www.rfc-editor.org/info/std94>.
+              At the time of writing, this STD comprises the following:
+
+              Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", STD 94, RFC 8949,
+              DOI 10.17487/RFC8949, December 2020,
+              <https://www.rfc-editor.org/info/rfc8949>.
+
+7.2.  Informative References
+
+   [RFC7464]  Williams, N., "JavaScript Object Notation (JSON) Text
+              Sequences", RFC 7464, DOI 10.17487/RFC7464, February 2015,
+              <https://www.rfc-editor.org/rfc/rfc7464>.
+
+   [RFC7493]  Bray, T., Ed., "The I-JSON Message Format", RFC 7493,
+              DOI 10.17487/RFC7493, March 2015,
+              <https://www.rfc-editor.org/rfc/rfc7493>.
+
+   [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
+              RFC 7951, DOI 10.17487/RFC7951, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7951>.
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 13]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
+   [RFC9090]  Bormann, C., "Concise Binary Object Representation (CBOR)
+              Tags for Object Identifiers", RFC 9090,
+              DOI 10.17487/RFC9090, July 2021,
+              <https://www.rfc-editor.org/rfc/rfc9090>.
+
+Acknowledgements
+
+   Henk Birkholz suggested the need for many of the control operators
+   defined here.
+
+Author's Address
+
+   Carsten Bormann
+   Universität Bremen TZI
+   Postfach 330440
+   D-28359 Bremen
+   Germany
+   Phone: +49-421-218-63921
+   Email: cabo@tzi.org
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                    Expires 2 May 2025                  [Page 14]
