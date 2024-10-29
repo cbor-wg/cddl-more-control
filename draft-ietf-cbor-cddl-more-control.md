@@ -347,7 +347,11 @@ control operator target.)
 The concatenation is performed on the sequences of bytes in the
 strings.
 If the result of the concatenation is a text string, the resulting
-sequence of bytes MUST be valid UTF-8.
+sequence of bytes only matches the target data item if that result is
+a valid text string (i.e., valid UTF-8; note that in contrast to the
+algorithm used in {{Section 3.2.3 of RFC8949@-cbor}} there is no need
+that all individual byte sequences going into the concatenation
+constitute valid text strings).
 
 Note that this control operator is hard to validate in the most
 general case, as this would require full parser functionality.
