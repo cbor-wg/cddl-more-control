@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-27T01:08:35.597894+00:00",
+  "timestamp": "2024-10-29T01:05:11.494187+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -300,6 +300,46 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOJHjjSc6AJuNJ",
+      "title": "Address open points from Orie Steele's AD review",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/9",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Orie's review: <https://mailarchive.ietf.org/arch/msg/cbor/XVVR0rcReVG8V25AaesLbYIM0GA>\r\nCarsten's reply: <https://mailarchive.ietf.org/arch/msg/cbor/hSjcI-ErzHrhINfVqdB5iAIivi4>\r\n",
+      "createdAt": "2024-10-28T19:59:08Z",
+      "updatedAt": "2024-10-28T21:11:34Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "feda1c2af7a17b3fc94e2b88958900e638c11cc5",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "ad-review",
+      "headRefOid": "77d12bfadef77a34c5403535b5a309a4ab5a82aa",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJHjjSc6PELwR",
+          "commit": {
+            "abbreviatedOid": "77d12bf"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-28T21:11:34Z",
+          "updatedAt": "2024-10-28T21:11:34Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
