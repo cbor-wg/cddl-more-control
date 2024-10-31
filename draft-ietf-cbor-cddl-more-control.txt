@@ -4,8 +4,8 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                    Universität Bremen TZI
-Intended status: Standards Track                         29 October 2024
-Expires: 2 May 2025
+Intended status: Standards Track                         31 October 2024
+Expires: 4 May 2025
 
 
                     More Control Operators for CDDL
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Bormann                    Expires 2 May 2025                   [Page 1]
+Bormann                    Expires 4 May 2025                   [Page 1]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -63,7 +63,7 @@ Internet-Draft           CDDL control operators             October 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 May 2025.
+   This Internet-Draft will expire on 4 May 2025.
 
 Copyright Notice
 
@@ -86,10 +86,10 @@ Table of Contents
    2.  Text Conversion . . . . . . . . . . . . . . . . . . . . . . .   4
      2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64  . . .   4
      2.2.  Numbers . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     2.3.  Printf-style Formatting . . . . . . . . . . . . . . . . .   6
-     2.4.  JSON Values . . . . . . . . . . . . . . . . . . . . . . .   7
+     2.3.  Printf-style Formatting . . . . . . . . . . . . . . . . .   7
+     2.4.  JSON Values . . . . . . . . . . . . . . . . . . . . . . .   8
    3.  Text Processing . . . . . . . . . . . . . . . . . . . . . . .   8
-     3.1.  Join  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     3.1.  Join  . . . . . . . . . . . . . . . . . . . . . . . . . .   9
    4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
    5.  Implementation Status . . . . . . . . . . . . . . . . . . . .  11
    6.  Security considerations . . . . . . . . . . . . . . . . . . .  12
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bormann                    Expires 2 May 2025                   [Page 2]
+Bormann                    Expires 4 May 2025                   [Page 2]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -165,7 +165,7 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 2 May 2025                   [Page 3]
+Bormann                    Expires 4 May 2025                   [Page 3]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -221,7 +221,7 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 2 May 2025                   [Page 4]
+Bormann                    Expires 4 May 2025                   [Page 4]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -266,21 +266,32 @@ Internet-Draft           CDDL control operators             October 2024
    increased by not providing them in the first place.  Also, adding "c"
    makes sure that any decision for classic base64 is actively taken.
 
-   These control operators are "strict" in their matching, i.e., they do
-   validate the mandates of their base documents.  Note that this also
-   means that .b64u and .b64c only accept the alphabets defined for each
-   of them, respectively; this is maybe worth pointing out here
-   explicitly as CDDL's "b64" literal prefix simply accepts either
-   alphabet and this behavior is different from that of these control
-   operators.
 
 
 
 
-Bormann                    Expires 2 May 2025                   [Page 5]
+
+
+
+
+
+
+
+Bormann                    Expires 4 May 2025                   [Page 5]
 
 Internet-Draft           CDDL control operators             October 2024
 
+
+   These control operators are "strict" in their matching, i.e., they
+   only match base encodings that conform to the mandates of their
+   defining documents.  Note that this also means that .b64u and .b64c
+   only match text strings composed of the set of characters defined for
+   each of them, respectively.  (This is maybe worth pointing out here
+   explicitly as this contrasts with the "b64" literal prefix that can
+   be used to notate byte strings in CDDL source code, which simply
+   accepts characters from either alphabet.  This behavior is different
+   from the matching behavior of the four base64 control operators
+   defined here.)
 
    The additional designation "sloppy" indicates that the text string is
    not validated for any additional bits being zero, in variance to what
@@ -317,6 +328,16 @@ Internet-Draft           CDDL control operators             October 2024
    the control type).  See the next section for more flexibility, and
    for octal, hexadecimal, or binary conversions.
 
+
+
+
+
+
+Bormann                    Expires 4 May 2025                   [Page 6]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
 2.3.  Printf-style Formatting
 
         +=========+===================================+===========+
@@ -327,16 +348,6 @@ Internet-Draft           CDDL control operators             October 2024
 
           Table 4: Control Operator for Printf-formatting of data
                                   item(s)
-
-
-
-
-
-
-Bormann                    Expires 2 May 2025                   [Page 6]
-
-Internet-Draft           CDDL control operators             October 2024
-
 
    The control operator .printf allows the modeling of text strings that
    carry various formatted information, as long as the format can be
@@ -372,6 +383,17 @@ Internet-Draft           CDDL control operators             October 2024
    Here, any_alg matches the text strings "0x0013" or "0x0001" but not
    "0x1234".
 
+
+
+
+
+
+
+Bormann                    Expires 4 May 2025                   [Page 7]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
 2.4.  JSON Values
 
    Some applications store complete JSON texts [STD90] into text
@@ -379,20 +401,6 @@ Internet-Draft           CDDL control operators             October 2024
    using the default JSON-to-CBOR conversion rules provided by
    Section 6.2 of RFC 8949 [STD94].  This is supported by a control
    operator similar to .cbor as defined in Section 3.8.4 of [RFC8610].
-
-
-
-
-
-
-
-
-
-
-Bormann                    Expires 2 May 2025                   [Page 7]
-
-Internet-Draft           CDDL control operators             October 2024
-
 
                       +=======+=========+===========+
                       | name  | meaning | reference |
@@ -434,21 +442,18 @@ Internet-Draft           CDDL control operators             October 2024
 
 3.  Text Processing
 
+
+
+
+Bormann                    Expires 4 May 2025                   [Page 8]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
 3.1.  Join
 
    Often, text strings need to be constructed out of parts that can best
    be modeled as an array.
-
-
-
-
-
-
-
-Bormann                    Expires 2 May 2025                   [Page 8]
-
-Internet-Draft           CDDL control operators             October 2024
-
 
          +=======+==================================+===========+
          | name  | meaning                          | reference |
@@ -480,7 +485,11 @@ Internet-Draft           CDDL control operators             October 2024
    string, obviously further constrained by the control operator
    target.)  The concatenation is performed on the sequences of bytes in
    the strings.  If the result of the concatenation is a text string,
-   the resulting sequence of bytes MUST be valid UTF-8.
+   the resulting sequence of bytes only matches the target data item if
+   that result is a valid text string (i.e., valid UTF-8; note that in
+   contrast to the algorithm used in Section 3.2.3 of RFC 8949 [STD94]
+   there is no need that all individual byte sequences going into the
+   concatenation constitute valid text strings).
 
    Note that this control operator is hard to validate in the most
    general case, as this would require full parser functionality.
@@ -489,6 +498,14 @@ Internet-Draft           CDDL control operators             October 2024
    Figure 1) for isolating the variable elements that need further
    validation at the CDDL data model level.  It is therefore recommended
    to limit the use of .join to simple arrangements where the array
+
+
+
+Bormann                    Expires 4 May 2025                   [Page 9]
+
+Internet-Draft           CDDL control operators             October 2024
+
+
    elements are laid out explicitly and there are no adjacent variable
    elements without intervening constant values, and where these
    constant values do not occur within the text described by the
@@ -496,15 +513,6 @@ Internet-Draft           CDDL control operators             October 2024
    If more complex parsing functionality is required, the ABNF control
    operators (see Section 3 of [RFC9165]) may be useful; however, these
    cannot reach back into CDDL-specified elements like .join can do.
-
-
-
-
-
-Bormann                    Expires 2 May 2025                   [Page 9]
-
-Internet-Draft           CDDL control operators             October 2024
-
 
       |  Implementation note: A validator implementation can use the
       |  marker elements to scan the text, isolating the variable
@@ -549,15 +557,7 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-
-
-
-
-
-
-
-
-Bormann                    Expires 2 May 2025                  [Page 10]
+Bormann                    Expires 4 May 2025                  [Page 10]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -613,7 +613,7 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 2 May 2025                  [Page 11]
+Bormann                    Expires 4 May 2025                  [Page 11]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -669,7 +669,7 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 2 May 2025                  [Page 12]
+Bormann                    Expires 4 May 2025                  [Page 12]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -725,7 +725,7 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 2 May 2025                  [Page 13]
+Bormann                    Expires 4 May 2025                  [Page 13]
 
 Internet-Draft           CDDL control operators             October 2024
 
@@ -781,4 +781,4 @@ Author's Address
 
 
 
-Bormann                    Expires 2 May 2025                  [Page 14]
+Bormann                    Expires 4 May 2025                  [Page 14]
