@@ -436,8 +436,16 @@ Acknowledgements
 ================
 {:unnumbered}
 
-Henk Birkholz suggested the need for many of the control operators
+{{{Henk Birkholz}}} suggested the need for many of the control operators
 defined here.
+The author would like to thank
+{{{Laurence Lundblade}}} and {{{Jeremy O'Donoghue}}} for sharpening some of
+the mandates,
+{{{Mikolai Gütschow}}} for improvements to some examples,
+{{{A.J. Stein}}} for serving as shepherd for this document and for his
+shepherd review,
+and {{{Orie Steele}}} for serving as responsible AD and for providing a
+detailed AD review.
 
 <!--  LocalWords:  dedenting dedented
  -->
