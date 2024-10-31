@@ -105,7 +105,7 @@ applicable control operators:
 | `.printf`                      | text          | array | Printf-formatted text representation of data items |
 | `.json`                        | text          | any   | Text representation of JSON values                 |
 | `.join`                        | text or bytes | array | Build text or byte string from array of components    |
-{: #tbl-new title="New control operators in this document, 
+{: #tbl-new title="New Control Operators in this Document, 
 t = target type (left-hand side), c = controller type (right-hand side)"}
 
 Terminology
@@ -160,7 +160,7 @@ names:
 | `.hexlc`       | Base16 (hex), lower case        | {{Section 8 of -base}} |
 | `.hexuc`       | Base16 (hex), upper case        | {{Section 8 of -base}} |
 | `.b45`         | Base45                          | {{-base45}}            |
-{: title="Control Operators for Text Conversion of byte strings"}
+{: #tbl-text-conv title="Control Operators for Text Conversion of Byte Strings"}
 
 Note that this specification is somewhat opinionated here: It does not
 provide base64url, base32 or base32hex encoding with padding, or
@@ -198,7 +198,7 @@ Numbers
 
 | name       | meaning         | reference |
 | `.decimal` | Decimal Integer | ---       |
-{: title="Control Operator for Text Conversion of Integers"}
+{: #tbl-num title="Control Operator for Text Conversion of Integers"}
 
 The control operator `.decimal` allows the modeling of text strings that carry numeric
 information in decimal form, such as in the uint64/int64 formats of
@@ -221,7 +221,7 @@ Printf-style Formatting
 
 | name      | meaning                           | reference |
 | `.printf` | Printf-formatting of data item(s) | ---       |
-{: title="Control Operator for Printf-formatting of data item(s)"}
+{: #tbl-printf title="Control Operator for Printf-formatting of Data Item(s)"}
 
 The control operator `.printf` allows the modeling of text strings that carry various formatted
 information, as long as the format can be represented in Printf-style
@@ -275,7 +275,7 @@ This is supported by a control operator similar to `.cbor` as defined in {{Secti
 
 | name    | meaning | reference |
 | `.json` | JSON    | {{STD90}}   |
-{: title="Control Operator for Text Conversion of JSON values"}
+{: #tbl-json title="Control Operator for Text Conversion of JSON Values"}
 
 ~~~ cddl
 embedded-claims = text .json claims
@@ -320,7 +320,7 @@ be modeled as an array.
 
 | name    | meaning                          | reference |
 | `.join` | concatenate elements of an array | ---       |
-{: title="Control Operator for Text Generation from Arrays"}
+{: #tbl-join title="Control Operator for Text Generation from Arrays"}
 
 For example, an IPv4 address in dotted-decimal might be modeled as in
 {{fig-join-example}}.
@@ -412,7 +412,7 @@ This document requests IANA to register the contents of
 | `.printf`      | \[RFC-XXXX] |
 | `.json`        | \[RFC-XXXX] |
 | `.join`        | \[RFC-XXXX] |
-{: #tbl-iana-reqs title="New control operators to be registered"}
+{: #tbl-iana-reqs title="New control Operators To Be Registered"}
 
 Implementation Status
 =====================
