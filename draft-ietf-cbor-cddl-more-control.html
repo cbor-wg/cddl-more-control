@@ -1274,7 +1274,7 @@ applicable control operators:<a href="#section-1-2" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
-<a href="#name-new-control-operators-in-th" class="selfRef">New control operators in this document,<br> t = target type (left-hand side), c = controller type (right-hand side)</a>
+<a href="#name-new-control-operators-in-th" class="selfRef">New Control Operators in this Document,<br> t = target type (left-hand side), c = controller type (right-hand side)</a>
         </caption>
 <thead>
           <tr>
@@ -1407,10 +1407,11 @@ signature = bytes .cbor COSE_Sign1
 <p id="section-2.1-4">The specification of these control operators is complicated by the
 large number of transformations in use.  Inspired by Section <a href="https://rfc-editor.org/rfc/rfc8949#section-8" class="relref">8</a> of RFC 8949 <span>[<a href="#STD94" class="cite xref">STD94</a>]</span>, we use representations defined in <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span> with the following
 names:<a href="#section-2.1-4" class="pilcrow">¶</a></p>
-<span id="name-control-operators-for-text-"></span><table class="center" id="table-2">
+<span id="name-control-operators-for-text-"></span><div id="tbl-text-conv">
+<table class="center" id="table-2">
           <caption>
 <a href="#table-2" class="selfRef">Table 2</a>:
-<a href="#name-control-operators-for-text-" class="selfRef">Control Operators for Text Conversion of byte strings</a>
+<a href="#name-control-operators-for-text-" class="selfRef">Control Operators for Text Conversion of Byte Strings</a>
           </caption>
 <thead>
             <tr>
@@ -1512,6 +1513,7 @@ names:<a href="#section-2.1-4" class="pilcrow">¶</a></p>
             </tr>
           </tbody>
         </table>
+</div>
 <p id="section-2.1-6">Note that this specification is somewhat opinionated here: It does not
 provide base64url, base32 or base32hex encoding with padding, or
 base64 classic without padding.  Experience indicates that these
@@ -1547,7 +1549,8 @@ of encoding).<a href="#section-2.1-8" class="pilcrow">¶</a></p>
         <h3 id="name-numbers">
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-numbers" class="section-name selfRef">Numbers</a>
         </h3>
-<span id="name-control-operator-for-text-c"></span><table class="center" id="table-3">
+<span id="name-control-operator-for-text-c"></span><div id="tbl-num">
+<table class="center" id="table-3">
           <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
 <a href="#name-control-operator-for-text-c" class="selfRef">Control Operator for Text Conversion of Integers</a>
@@ -1569,6 +1572,7 @@ of encoding).<a href="#section-2.1-8" class="pilcrow">¶</a></p>
             </tr>
           </tbody>
         </table>
+</div>
 <p id="section-2.2-2">The control operator <code>.decimal</code> allows the modeling of text strings that carry numeric
 information in decimal form, such as in the uint64/int64 formats of
 YANG-JSON <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span>.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
@@ -1590,10 +1594,11 @@ or binary conversions.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
         <h3 id="name-printf-style-formatting">
 <a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-printf-style-formatting" class="section-name selfRef">Printf-style Formatting</a>
         </h3>
-<span id="name-control-operator-for-printf"></span><table class="center" id="table-4">
+<span id="name-control-operator-for-printf"></span><div id="tbl-printf">
+<table class="center" id="table-4">
           <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
-<a href="#name-control-operator-for-printf" class="selfRef">Control Operator for Printf-formatting of data item(s)</a>
+<a href="#name-control-operator-for-printf" class="selfRef">Control Operator for Printf-formatting of Data Item(s)</a>
           </caption>
 <thead>
             <tr>
@@ -1612,6 +1617,7 @@ or binary conversions.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
             </tr>
           </tbody>
         </table>
+</div>
 <p id="section-2.3-2">The control operator <code>.printf</code> allows the modeling of text strings that carry various formatted
 information, as long as the format can be represented in Printf-style
 formatting strings as they are used in the C language (see Section
@@ -1658,10 +1664,11 @@ not <code>"0x1234"</code>.<a href="#section-2.3-9" class="pilcrow">¶</a></p>
 JSON value for which can easily be defined in CDDL by using the default
 JSON-to-CBOR conversion rules provided by Section <a href="https://rfc-editor.org/rfc/rfc8949#section-6.2" class="relref">6.2</a> of RFC 8949 <span>[<a href="#STD94" class="cite xref">STD94</a>]</span>.
 This is supported by a control operator similar to <code>.cbor</code> as defined in <span><a href="https://rfc-editor.org/rfc/rfc8610#section-3.8.4" class="relref">Section 3.8.4</a> of [<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
-<span id="name-control-operator-for-text-co"></span><table class="center" id="table-5">
+<span id="name-control-operator-for-text-co"></span><div id="tbl-json">
+<table class="center" id="table-5">
           <caption>
 <a href="#table-5" class="selfRef">Table 5</a>:
-<a href="#name-control-operator-for-text-co" class="selfRef">Control Operator for Text Conversion of JSON values</a>
+<a href="#name-control-operator-for-text-co" class="selfRef">Control Operator for Text Conversion of JSON Values</a>
           </caption>
 <thead>
             <tr>
@@ -1682,6 +1689,7 @@ This is supported by a control operator similar to <code>.cbor</code> as defined
             </tr>
           </tbody>
         </table>
+</div>
 <div class="lang-cddl sourcecode" id="section-2.4-3">
 <pre>
 embedded-claims = text .json claims
@@ -1733,7 +1741,8 @@ again, future control operators could address this use case.<a href="#section-2.
         </h3>
 <p id="section-3.1-1">Often, text strings need to be constructed out of parts that can best
 be modeled as an array.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<span id="name-control-operator-for-text-g"></span><table class="center" id="table-6">
+<span id="name-control-operator-for-text-g"></span><div id="tbl-join">
+<table class="center" id="table-6">
           <caption>
 <a href="#table-6" class="selfRef">Table 6</a>:
 <a href="#name-control-operator-for-text-g" class="selfRef">Control Operator for Text Generation from Arrays</a>
@@ -1755,6 +1764,7 @@ be modeled as an array.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
             </tr>
           </tbody>
         </table>
+</div>
 <p id="section-3.1-3">For example, an IPv4 address in dotted-decimal might be modeled as in
 <a href="#fig-join-example" class="auto internal xref">Figure 1</a>.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <span id="name-using-the-join-operator-to-"></span><div id="fig-join-example">
@@ -1835,7 +1845,7 @@ number of this RFC and remove this note.</span><a href="#section-4-1" class="pil
 <table class="center" id="table-7">
         <caption>
 <a href="#table-7" class="selfRef">Table 7</a>:
-<a href="#name-new-control-operators-to-be" class="selfRef">New control operators to be registered</a>
+<a href="#name-new-control-operators-to-be" class="selfRef">New control Operators To Be Registered</a>
         </caption>
 <thead>
           <tr>

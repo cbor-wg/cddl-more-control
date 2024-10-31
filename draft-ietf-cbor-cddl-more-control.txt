@@ -148,7 +148,7 @@ Internet-Draft           CDDL control operators             October 2024
     |               | bytes   |       | from array of components     |
     +---------------+---------+-------+------------------------------+
 
-             Table 1: New control operators in this document,
+             Table 1: New Control Operators in this Document,
     t = target type (left-hand side), c = controller type (right-hand
                                   side)
 
@@ -257,7 +257,7 @@ Internet-Draft           CDDL control operators             October 2024
      | .b45         | Base45                | [RFC9285]              |
      +--------------+-----------------------+------------------------+
 
-       Table 2: Control Operators for Text Conversion of byte strings
+       Table 2: Control Operators for Text Conversion of Byte Strings
 
    Note that this specification is somewhat opinionated here: It does
    not provide base64url, base32 or base32hex encoding with padding, or
@@ -346,8 +346,8 @@ Internet-Draft           CDDL control operators             October 2024
         | .printf | Printf-formatting of data item(s) | ---       |
         +---------+-----------------------------------+-----------+
 
-          Table 4: Control Operator for Printf-formatting of data
-                                  item(s)
+          Table 4: Control Operator for Printf-formatting of Data
+                                  Item(s)
 
    The control operator .printf allows the modeling of text strings that
    carry various formatted information, as long as the format can be
@@ -410,7 +410,7 @@ Internet-Draft           CDDL control operators             October 2024
 
                          Table 5: Control Operator
                         for Text Conversion of JSON
-                                   values
+                                   Values
 
    embedded-claims = text .json claims
    claims = {iss: text, exp: text}
@@ -595,8 +595,8 @@ Internet-Draft           CDDL control operators             October 2024
                        +--------------+------------+
 
                             Table 7: New control
-                              operators to be
-                                 registered
+                              Operators To Be
+                                 Registered
 
 5.  Implementation Status
 
