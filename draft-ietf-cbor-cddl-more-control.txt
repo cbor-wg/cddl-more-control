@@ -738,7 +738,12 @@ Internet-Draft           CDDL control operators             October 2024
 Acknowledgements
 
    Henk Birkholz suggested the need for many of the control operators
-   defined here.
+   defined here.  The author would like to thank Laurence Lundblade and
+   Jeremy O'Donoghue for sharpening some of the mandates, Mikolai
+   Gütschow for improvements to some examples, A.J. Stein for serving as
+   shepherd for this document and for his shepherd review, and Orie
+   Steele for serving as responsible AD and for providing a detailed AD
+   review.
 
 Author's Address
 
@@ -749,11 +754,6 @@ Author's Address
    Germany
    Phone: +49-421-218-63921
    Email: cabo@tzi.org
-
-
-
-
-
 
 
 
