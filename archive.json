@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-29T01:05:11.494187+00:00",
+  "timestamp": "2024-10-31T01:04:44.568118+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -306,24 +306,26 @@
       "id": "PR_kwDOJHjjSc6AJuNJ",
       "title": "Address open points from Orie Steele's AD review",
       "url": "https://github.com/cbor-wg/cddl-more-control/pull/9",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Orie's review: <https://mailarchive.ietf.org/arch/msg/cbor/XVVR0rcReVG8V25AaesLbYIM0GA>\r\nCarsten's reply: <https://mailarchive.ietf.org/arch/msg/cbor/hSjcI-ErzHrhINfVqdB5iAIivi4>\r\n",
       "createdAt": "2024-10-28T19:59:08Z",
-      "updatedAt": "2024-10-28T21:11:34Z",
+      "updatedAt": "2024-10-29T08:55:22Z",
       "baseRepository": "cbor-wg/cddl-more-control",
       "baseRefName": "main",
       "baseRefOid": "feda1c2af7a17b3fc94e2b88958900e638c11cc5",
       "headRepository": "cbor-wg/cddl-more-control",
       "headRefName": "ad-review",
       "headRefOid": "77d12bfadef77a34c5403535b5a309a4ab5a82aa",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-29T08:53:48Z",
+      "mergedAt": "2024-10-29T08:53:48Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "e892535061153608e345bbb977e2784c7d7f252c"
+      },
       "comments": [],
       "reviews": [
         {
@@ -337,6 +339,46 @@
           "body": "",
           "createdAt": "2024-10-28T21:11:34Z",
           "updatedAt": "2024-10-28T21:11:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOJHjjSc6AR031",
+      "title": "Address open points from Orie Steele's AD review, round 2",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/10",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-29T17:40:47Z",
+      "updatedAt": "2024-10-29T17:49:22Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "e892535061153608e345bbb977e2784c7d7f252c",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "ad-review-2",
+      "headRefOid": "529f8692f9a819b6f627805bf6bca9b5d675522f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJHjjSc6PNmdH",
+          "commit": {
+            "abbreviatedOid": "529f869"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-29T17:49:22Z",
+          "updatedAt": "2024-10-29T17:49:22Z",
           "comments": []
         }
       ]
