@@ -432,6 +432,8 @@ in {{Section 12 of -base}} for the control operators defined in {{base}}.
 
 --- back
 
+{::include-all lists.md}
+
 Acknowledgements
 ================
 {:unnumbered}

@@ -10,3 +10,7 @@ else
 	git clone -q --depth 10 $(CLONE_ARGS) \
 	    -b main https://github.com/martinthomson/i-d-template $(LIBDIR)
 endif
+
+lists.md: draft-ietf-cbor-cddl-more-control.xml
+	kramdown-rfc-extract-figures-tables $< >$@.new
+	mv $@.new $@
