@@ -170,12 +170,16 @@ increased by not providing them in the first place.  Also, adding "c"
 makes sure that any decision for classic base64 is actively taken.
 
 These control operators are "strict" in their matching, i.e., they
-do validate the mandates of their base documents.
-Note that this also means that `.b64u` and `.b64c` only accept the
-alphabets defined for each of them, respectively; this is maybe worth
-pointing out here explicitly as CDDL's "b64" literal prefix simply
-accepts either alphabet and this behavior is different from that of
-these control operators.
+only match base encodings that conform to the mandates of their
+defining documents.
+Note that this also means that `.b64u` and `.b64c` only match text
+strings composed of the set of characters defined for each of them,
+respectively.
+(This is maybe worth pointing out here explicitly as this contrasts
+with the "b64" literal prefix that can be used to notate byte strings
+in CDDL source code, which simply accepts characters from either alphabet.
+This behavior is different from the matching behavior of the four
+base64 control operators defined here.)
 
 The additional designation "sloppy" indicates that the text string is
 not validated for any additional bits being zero, in variance to what
@@ -343,7 +347,11 @@ control operator target.)
 The concatenation is performed on the sequences of bytes in the
 strings.
 If the result of the concatenation is a text string, the resulting
-sequence of bytes MUST be valid UTF-8.
+sequence of bytes only matches the target data item if that result is
+a valid text string (i.e., valid UTF-8; note that in contrast to the
+algorithm used in {{Section 3.2.3 of RFC8949@-cbor}} there is no need
+that all individual byte sequences going into the concatenation
+constitute valid text strings).
 
 Note that this control operator is hard to validate in the most
 general case, as this would require full parser functionality.
