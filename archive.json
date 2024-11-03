@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-31T01:04:44.568118+00:00",
+  "timestamp": "2024-11-03T01:08:35.618447+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -348,24 +348,26 @@
       "id": "PR_kwDOJHjjSc6AR031",
       "title": "Address open points from Orie Steele's AD review, round 2",
       "url": "https://github.com/cbor-wg/cddl-more-control/pull/10",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-10-29T17:40:47Z",
-      "updatedAt": "2024-10-29T17:49:22Z",
+      "updatedAt": "2024-10-31T12:24:42Z",
       "baseRepository": "cbor-wg/cddl-more-control",
       "baseRefName": "main",
       "baseRefOid": "e892535061153608e345bbb977e2784c7d7f252c",
       "headRepository": "cbor-wg/cddl-more-control",
       "headRefName": "ad-review-2",
       "headRefOid": "529f8692f9a819b6f627805bf6bca9b5d675522f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-31T12:24:42Z",
+      "mergedAt": "2024-10-31T12:24:42Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "88c938efbb427148d6580a640af6d10cfc622c7c"
+      },
       "comments": [],
       "reviews": [
         {
