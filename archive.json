@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-05T01:02:31.355354+00:00",
+  "timestamp": "2024-11-07T01:02:53.052666+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -139,7 +139,7 @@
       "labels": [],
       "body": "For example, \r\n\r\n    The target of .b64u MUST be a text string type\r\n    The controller MUST be a byte string type (or a text string type)\r\n\r\nMaybe add columns to the table of operators to indicate the types of the target and controller? I think someone implementing this needs to know what the types allowed for the target and controller are.\r\n\r\nOther language in the section could be more specification-like using MUST more and such.",
       "createdAt": "2024-07-13T17:44:28Z",
-      "updatedAt": "2024-07-20T20:08:55Z",
+      "updatedAt": "2024-11-05T18:14:02Z",
       "closedAt": null,
       "comments": [
         {
@@ -162,6 +162,13 @@
           "body": "It's easy to get a lot of \"2+2 MUST be 4\", while still struggling to explain the concept of addition in general.  The examples you gave above are not statements about the tools and what they MUST do.  (I think a single \"MUST work right\" would work best, but wouldn't add anything either.)\r\nI think it is useful to attempt to further some truth in advertising about what a specific kind of tool is, such as a validating tool.  We could spend some time setting up a taxonomy.  I think that will change a lot in the next round where we add annotations as a first order concept, so now would not be the best time to do that work.",
           "createdAt": "2024-07-20T20:08:54Z",
           "updatedAt": "2024-07-20T20:08:54Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "body": "Can this issue be closed?",
+          "createdAt": "2024-11-05T18:14:01Z",
+          "updatedAt": "2024-11-05T18:14:01Z"
         }
       ]
     }
