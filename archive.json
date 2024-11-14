@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-12T01:02:03.231532+00:00",
+  "timestamp": "2024-11-14T01:03:12.543413+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -132,15 +132,15 @@
       "id": "I_kwDOJHjjSc6PePeE",
       "title": "Maybe more standards-oriented language for section on byte strings?",
       "url": "https://github.com/cbor-wg/cddl-more-control/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "laurencelundblade",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "For example, \r\n\r\n    The target of .b64u MUST be a text string type\r\n    The controller MUST be a byte string type (or a text string type)\r\n\r\nMaybe add columns to the table of operators to indicate the types of the target and controller? I think someone implementing this needs to know what the types allowed for the target and controller are.\r\n\r\nOther language in the section could be more specification-like using MUST more and such.",
       "createdAt": "2024-07-13T17:44:28Z",
-      "updatedAt": "2024-11-11T19:38:52Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-12T01:05:22Z",
+      "closedAt": "2024-11-12T01:05:21Z",
       "comments": [
         {
           "author": "cabo",
@@ -176,6 +176,37 @@
           "body": "The tables address the main things. Yes, it can be closed.",
           "createdAt": "2024-11-11T19:38:51Z",
           "updatedAt": "2024-11-11T19:38:51Z"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOJHjjSc6ePrRn",
+      "title": "Suggestion for new control .unit to specify the physical unit of a field",
+      "url": "https://github.com/cbor-wg/cddl-more-control/issues/11",
+      "state": "OPEN",
+      "author": "mstahl-iis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "This is the proposal for a new control `.unit` to specify the physical unit of a data field.\r\n\r\n- Should be probably only allowed for numeric types\r\n- Valid units should be at least the ones defined by [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)",
+      "createdAt": "2024-11-13T10:00:29Z",
+      "updatedAt": "2024-11-13T11:56:58Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I would expect the SenML registry of units (defined by [RFC 8428][1] and [RFC 8798][2]) to be a good basis for anything like this, so I think we already are half way there.\r\nHowever, I believe that adding an [\"annotation\"][3]  feature like this goes beyond the current architecture of CDDL.\r\nSo I'd like to pick up discussion about how to use these \"annotations\" and what their general structure is, with more than `.unit` as an example to ponder.\r\nOn the way to that, a few worked examples how a (non-trivial) CDDL spec might make use of `.unit` and what tool support you expect would be very useful input!\r\n\r\n[1]: https://www.rfc-editor.org/rfc/rfc8428#section-12.1\r\n[2]: https://www.rfc-editor.org/rfc/rfc8798#new-units\r\n[3]: https://www.ietf.org/archive/id/draft-bormann-cbor-cddl-2-draft-05.html#name-annotations",
+          "createdAt": "2024-11-13T10:17:02Z",
+          "updatedAt": "2024-11-13T10:17:02Z"
+        },
+        {
+          "author": "mstahl-iis",
+          "authorAssociation": "NONE",
+          "body": "SenML surely is a sensible choice.\r\n\r\nTools could make use of e.g. [Boost.Units](https://www.boost.org/doc/libs/1_86_0/doc/html/boost_units.html) or [Pint](https://pint.readthedocs.io/en/stable/), though it seems both are not widely used.\r\n\r\nThe main point is probably to have a consistent rendering in documents that describe the specification. ",
+          "createdAt": "2024-11-13T11:56:57Z",
+          "updatedAt": "2024-11-13T11:56:57Z"
         }
       ]
     }
