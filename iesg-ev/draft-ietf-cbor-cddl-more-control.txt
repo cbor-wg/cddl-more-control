@@ -195,8 +195,8 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
    The specification of these control operators is complicated by the
    large number of transformations in use.  Inspired by Section 8 of RFC
-   8949 [STD94], we use representations defined in [RFC4648] with the
-   following names:
+   8949 [STD94], this specification uses representations defined in
+   [RFC4648] with the following names:
 
 
 
