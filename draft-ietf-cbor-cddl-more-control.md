@@ -148,7 +148,7 @@ signature = bytes .cbor COSE_Sign1
 
 The specification of these control operators is complicated by the
 large number of transformations in use.  Inspired by {{Section 8 of
-RFC8949@-cbor}}, we use representations defined in {{-base}} with the following
+RFC8949@-cbor}}, this specification uses representations defined in {{-base}} with the following
 names:
 
 | name           | meaning                         | reference            |
