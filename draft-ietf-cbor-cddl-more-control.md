@@ -105,7 +105,7 @@ applicable control operators:
 | `.printf`                      | text          | array | Printf-formatted text representation of data items |
 | `.json`                        | text          | any   | Text representation of JSON values                 |
 | `.join`                        | text or bytes | array | Build text or byte string from array of components    |
-{: #tbl-new title="New Control Operators in this Document, 
+{: #tbl-new title="Summary of New Control Operators in this Document, 
 t = target type (left-hand side), c = controller type (right-hand side)"}
 
 Terminology
