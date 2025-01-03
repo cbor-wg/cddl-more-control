@@ -4,8 +4,8 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                    Universität Bremen TZI
-Intended status: Standards Track                         31 October 2024
-Expires: 4 May 2025
+Intended status: Standards Track                          3 January 2025
+Expires: 7 July 2025
 
 
                     More Control Operators for CDDL
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 1]
+Bormann                    Expires 7 July 2025                  [Page 1]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,11 +63,11 @@ Internet-Draft           CDDL control operators             October 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 May 2025.
+   This Internet-Draft will expire on 7 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 2]
+Bormann                    Expires 7 July 2025                  [Page 2]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    The present document defines a number of additional generally
@@ -148,7 +148,7 @@ Internet-Draft           CDDL control operators             October 2024
     |               | bytes   |       | from array of components     |
     +---------------+---------+-------+------------------------------+
 
-             Table 1: New Control Operators in this Document,
+       Table 1: Summary of New Control Operators in this Document,
     t = target type (left-hand side), c = controller type (right-hand
                                   side)
 
@@ -165,9 +165,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 3]
+Bormann                    Expires 7 July 2025                  [Page 3]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    This specification uses terminology from [RFC8610].  In particular,
@@ -221,9 +221,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 4]
+Bormann                    Expires 7 July 2025                  [Page 4]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
      +==============+=======================+========================+
@@ -277,9 +277,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 5]
+Bormann                    Expires 7 July 2025                  [Page 5]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    These control operators are "strict" in their matching, i.e., they
@@ -333,9 +333,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 6]
+Bormann                    Expires 7 July 2025                  [Page 6]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
 2.3.  Printf-style Formatting
@@ -389,9 +389,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 7]
+Bormann                    Expires 7 July 2025                  [Page 7]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
 2.4.  JSON Values
@@ -445,9 +445,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 8]
+Bormann                    Expires 7 July 2025                  [Page 8]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
 3.1.  Join
@@ -501,9 +501,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                   [Page 9]
+Bormann                    Expires 7 July 2025                  [Page 9]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    elements are laid out explicitly and there are no adjacent variable
@@ -557,9 +557,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                  [Page 10]
+Bormann                    Expires 7 July 2025                 [Page 10]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
                        +==============+============+
@@ -613,9 +613,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                  [Page 11]
+Bormann                    Expires 7 July 2025                 [Page 11]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
 6.  Security considerations
@@ -669,9 +669,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                  [Page 12]
+Bormann                    Expires 7 July 2025                 [Page 12]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    [RFC9165]  Bormann, C., "Additional Control Operators for the Concise
@@ -725,9 +725,9 @@ Internet-Draft           CDDL control operators             October 2024
 
 
 
-Bormann                    Expires 4 May 2025                  [Page 13]
+Bormann                    Expires 7 July 2025                 [Page 13]
 
-Internet-Draft           CDDL control operators             October 2024
+Internet-Draft           CDDL control operators             January 2025
 
 
    [RFC9090]  Bormann, C., "Concise Binary Object Representation (CBOR)
@@ -781,4 +781,4 @@ Author's Address
 
 
 
-Bormann                    Expires 4 May 2025                  [Page 14]
+Bormann                    Expires 7 July 2025                 [Page 14]
