@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-02T01:03:16.161636+00:00",
+  "timestamp": "2025-01-05T01:09:22.731759+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -426,6 +426,74 @@
           "body": "",
           "createdAt": "2024-10-29T17:49:22Z",
           "updatedAt": "2024-10-29T17:49:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOJHjjSc6GlfA8",
+      "title": "(editorial) process IESG feedback from \u00c9ric Vyncke",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/12",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "<https://mailarchive.ietf.org/arch/msg/cbor/x07Rr0AKGwAQz0cZH7M8clEHXUY>",
+      "createdAt": "2025-01-02T14:34:41Z",
+      "updatedAt": "2025-01-02T15:06:48Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "bec90531ad35489f17a565cd88fa4b283d080a8d",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "iesg-ev",
+      "headRefOid": "bcfc26a25b7274c310e48251e26e3b8a94794cd3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOJHjjSc6GqtRA",
+      "title": "Editorial Suggestions from IoTDIR review (Ari Ker\u00e4nen)",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/13",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-03T14:34:23Z",
+      "updatedAt": "2025-01-03T17:36:53Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "bec90531ad35489f17a565cd88fa4b283d080a8d",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "iotdir-ak",
+      "headRefOid": "7e65ab3235c688eae492b0e12fcf422b0d36303a",
+      "closedAt": "2025-01-03T16:35:12Z",
+      "mergedAt": "2025-01-03T16:35:12Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "249bceacf311bd64c91776705f942bff5ac45a6b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJHjjSc6WwFve",
+          "commit": {
+            "abbreviatedOid": "7e65ab3"
+          },
+          "author": "akeranen",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-03T14:38:20Z",
+          "updatedAt": "2025-01-03T14:38:20Z",
           "comments": []
         }
       ]
