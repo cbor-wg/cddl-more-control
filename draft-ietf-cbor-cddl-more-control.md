@@ -2,10 +2,12 @@
 v: 3
 
 title: >
-  More Control Operators for CDDL
-abbrev: CDDL control operators
+  Concise Data Definition Language (CDDL):
+  Additional Control Operators for the Conversion and Processing of Text
+abbrev: >
+  CDDL: More Control Operators for Text
 docname: draft-ietf-cbor-cddl-more-control-latest
-# date: 2024-07-20
+# date: 2025-01-02
 cat: std
 consensus: true
 stream: IETF
@@ -146,7 +148,7 @@ signature = bytes .cbor COSE_Sign1
 
 The specification of these control operators is complicated by the
 large number of transformations in use.  Inspired by {{Section 8 of
-RFC8949@-cbor}}, we use representations defined in {{-base}} with the following
+RFC8949@-cbor}}, this specification uses representations defined in {{-base}} with the following
 names:
 
 | name           | meaning                         | reference            |
@@ -187,7 +189,7 @@ is specified in the paragraph behind table 1 in {{Section 4 of -base}}.
 Note that the present specification is opinionated again in not
 specifying a sloppy variant of base32 or base32/hex, as no legacy use
 of sloppy base32(/hex) was known at the time of writing.
-Base45 is known to be suboptimal for use in environments with limited
+Base45 {{-base45}} is known to be suboptimal for use in environments with limited
 data transparency (such as URLs), but is included because of its close
 relationship to QR codes and its wide use in health informatics (note
 that base45 is strongly specified not to allow sloppy forms
@@ -412,7 +414,7 @@ This document requests IANA to register the contents of
 | `.printf`      | \[RFC-XXXX] |
 | `.json`        | \[RFC-XXXX] |
 | `.join`        | \[RFC-XXXX] |
-{: #tbl-iana-reqs title="New control Operators To Be Registered"}
+{: #tbl-iana-reqs title="New Control Operators To Be Registered"}
 
 Implementation Status
 =====================
