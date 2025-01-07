@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-05T01:09:22.731759+00:00",
+  "timestamp": "2025-01-07T01:04:34.178035+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -442,7 +442,7 @@
       "labels": [],
       "body": "<https://mailarchive.ietf.org/arch/msg/cbor/x07Rr0AKGwAQz0cZH7M8clEHXUY>",
       "createdAt": "2025-01-02T14:34:41Z",
-      "updatedAt": "2025-01-02T15:06:48Z",
+      "updatedAt": "2025-01-05T19:15:57Z",
       "baseRepository": "cbor-wg/cddl-more-control",
       "baseRefName": "main",
       "baseRefOid": "bec90531ad35489f17a565cd88fa4b283d080a8d",
