@@ -4,8 +4,8 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                    Universität Bremen TZI
-Intended status: Standards Track                          7 January 2025
-Expires: 11 July 2025
+Intended status: Standards Track                          9 January 2025
+Expires: 13 July 2025
 
 
  Concise Data Definition Language (CDDL): Additional Control Operators
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 1]
+Bormann                   Expires 13 July 2025                  [Page 1]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -63,7 +63,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 July 2025.
+   This Internet-Draft will expire on 13 July 2025.
 
 Copyright Notice
 
@@ -84,11 +84,11 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Text Conversion . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64  . . .   4
-     2.2.  Numbers . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     2.1.  Byte Strings: Base 16 (Hex), Base 32, Base 45, Base 64  .   4
+     2.2.  Numerals  . . . . . . . . . . . . . . . . . . . . . . . .   6
      2.3.  Printf-style Formatting . . . . . . . . . . . . . . . . .   7
      2.4.  JSON Values . . . . . . . . . . . . . . . . . . . . . . .   8
-   3.  Text Processing . . . . . . . . . . . . . . . . . . . . . . .   8
+   3.  Text Processing . . . . . . . . . . . . . . . . . . . . . . .   9
      3.1.  Join  . . . . . . . . . . . . . . . . . . . . . . . . . .   9
    4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
    5.  Implementation Status . . . . . . . . . . . . . . . . . . . .  11
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 2]
+Bormann                   Expires 13 July 2025                  [Page 2]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -135,7 +135,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
     | .b45          | text    | bytes | Base45 representation of     |
     |               |         |       | byte strings                 |
     +---------------+---------+-------+------------------------------+
-    | .decimal      | text    | int   | Text representation of       |
+    | .base10       | text    | int   | Text representation of       |
     |               |         |       | integer numbers              |
     +---------------+---------+-------+------------------------------+
     | .printf       | text    | array | Printf-formatted text        |
@@ -165,7 +165,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 3]
+Bormann                   Expires 13 July 2025                  [Page 3]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -180,7 +180,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 2.  Text Conversion
 
-2.1.  Byte Strings: Base16 (Hex), Base32, Base45, Base64
+2.1.  Byte Strings: Base 16 (Hex), Base 32, Base 45, Base 64
 
    A CDDL model often defines data that are byte strings in essence but
    need to be transported in various encoded forms, such as base64 or
@@ -221,7 +221,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 4]
+Bormann                   Expires 13 July 2025                  [Page 4]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -277,7 +277,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 5]
+Bormann                   Expires 13 July 2025                  [Page 5]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -305,38 +305,44 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
    health informatics (note that base45 is strongly specified not to
    allow sloppy forms of encoding).
 
-2.2.  Numbers
+2.2.  Numerals
 
-                +==========+=================+===========+
-                | name     | meaning         | reference |
-                +==========+=================+===========+
-                | .decimal | Decimal Integer | ---       |
-                +----------+-----------------+-----------+
+           +=========+============================+===========+
+           | name    | meaning                    | reference |
+           +=========+============================+===========+
+           | .base10 | Base-ten (decimal) Integer | ---       |
+           +---------+----------------------------+-----------+
 
-                    Table 3: Control Operator for Text
-                          Conversion of Integers
+             Table 3: Control Operator for Text Conversion of
+                                 Integers
 
-   The control operator .decimal allows the modeling of text strings
-   that carry numeric information in decimal form, such as in the
+   The control operator .base10 allows the modeling of text strings that
+   carry an integer number in decimal form (as a text string with digits
+   in the usual base-ten positional numeral system), such as in the
    uint64/int64 formats of YANG-JSON [RFC7951].
 
-   yang-json-sid = text .decimal (0..9223372036854775807)
+   yang-json-sid = text .base10 (0..9223372036854775807)
 
-   Again, the specification is opinionated by only providing integer
-   numbers without leading zeros, i.e., the decimal numbers match the
-   regular expression 0|-?[1-9][0-9]* (of course, further restricted by
-   the control type).  See the next section for more flexibility, and
-   for octal, hexadecimal, or binary conversions.
-
-
-
+   Again, the specification is opinionated by only providing for integer
+   numbers and these only represented without leading zeros, i.e., the
+   decimal integer numerals match the regular expression 0|-?[1-9][0-9]*
+   (of course, further restricted by the control type).  See the next
+   section for more flexibility, and for other numeric bases such as
+   octal, hexadecimal, or binary conversions.
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 6]
+
+Bormann                   Expires 13 July 2025                  [Page 6]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
+
+   Note that this control operator governs text representations of
+   integers and should not be confused with the control operators
+   governing text representations of byte strings (b64u etc.).  This
+   contrast is somewhat reinforced by spelling out "base" in the name
+   base10 as opposed to those of the byte string operators.
 
 2.3.  Printf-style Formatting
 
@@ -380,19 +386,16 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
    any_alg = hexlabel<1..20>
    hexlabel<K> = text .printf (["0x%04x", K])
 
-   Here, any_alg matches the text strings "0x0013" or "0x0001" but not
-   "0x1234".
 
 
 
-
-
-
-
-Bormann                   Expires 11 July 2025                  [Page 7]
+Bormann                   Expires 13 July 2025                  [Page 7]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
+
+   Here, any_alg matches the text strings "0x0013" or "0x0001" but not
+   "0x1234".
 
 2.4.  JSON Values
 
@@ -440,15 +443,14 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
       use case for inclusion in CDDL is known at the time of writing;
       again, future control operators could address this use case.
 
-3.  Text Processing
 
 
-
-
-Bormann                   Expires 11 July 2025                  [Page 8]
+Bormann                   Expires 13 July 2025                  [Page 8]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
+
+3.  Text Processing
 
 3.1.  Join
 
@@ -470,7 +472,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
    legacy-ip-address = text .join legacy-ip-address-elements
    legacy-ip-address-elements = [bytetext, ".", bytetext, ".",
                                  bytetext, ".", bytetext]
-   bytetext = text .decimal byte
+   bytetext = text .base10 byte
    byte = 0..255
 
       Figure 1: Using the .join operator to build dotted-decimal IPv4
@@ -496,16 +498,16 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
    Simple implementation strategies will use array elements with
    constant values as guideposts ("markers", such as the "." in
    Figure 1) for isolating the variable elements that need further
-   validation at the CDDL data model level.  It is therefore recommended
-   to limit the use of .join to simple arrangements where the array
 
 
 
-Bormann                   Expires 11 July 2025                  [Page 9]
+Bormann                   Expires 13 July 2025                  [Page 9]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
+   validation at the CDDL data model level.  It is therefore recommended
+   to limit the use of .join to simple arrangements where the array
    elements are laid out explicitly and there are no adjacent variable
    elements without intervening constant values, and where these
    constant values do not occur within the text described by the
@@ -555,9 +557,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-
-
-Bormann                   Expires 11 July 2025                 [Page 10]
+Bormann                   Expires 13 July 2025                 [Page 10]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -585,7 +585,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
                        +--------------+------------+
                        | .hexuc       | [RFC-XXXX] |
                        +--------------+------------+
-                       | .decimal     | [RFC-XXXX] |
+                       | .base10      | [RFC-XXXX] |
                        +--------------+------------+
                        | .printf      | [RFC-XXXX] |
                        +--------------+------------+
@@ -613,7 +613,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-Bormann                   Expires 11 July 2025                 [Page 11]
+Bormann                   Expires 13 July 2025                 [Page 11]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -669,7 +669,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-Bormann                   Expires 11 July 2025                 [Page 12]
+Bormann                   Expires 13 July 2025                 [Page 12]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -725,7 +725,7 @@ Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
 
 
-Bormann                   Expires 11 July 2025                 [Page 13]
+Bormann                   Expires 13 July 2025                 [Page 13]
 
 Internet-Draft    CDDL: More Control Operators for Text     January 2025
 
@@ -781,4 +781,4 @@ Author's Address
 
 
 
-Bormann                   Expires 11 July 2025                 [Page 14]
+Bormann                   Expires 13 July 2025                 [Page 14]
