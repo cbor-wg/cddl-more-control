@@ -7,7 +7,7 @@ title: >
 abbrev: >
   CDDL: More Control Operators for Text
 docname: draft-ietf-cbor-cddl-more-control-latest
-# date: 2025-01-02
+# date: 2025-01-09
 cat: std
 consensus: true
 stream: IETF
@@ -103,10 +103,10 @@ applicable control operators:
 | `.hex`, `.hexlc`, `.hexuc`     | text          | bytes | Base16 representation of byte strings              |
 | `.b32`, `.h32`                 | text          | bytes | Base32 representation of byte strings              |
 | `.b45`                         | text          | bytes | Base45 representation of byte strings              |
-| `.decimal`                     | text          | int   | Text representation of integer numbers             |
+| `.base10`                      | text          | int   | Text representation of integer numbers             |
 | `.printf`                      | text          | array | Printf-formatted text representation of data items |
 | `.json`                        | text          | any   | Text representation of JSON values                 |
-| `.join`                        | text or bytes | array | Build text or byte string from array of components    |
+| `.join`                        | text or bytes | array | Build text or byte string from array of components |
 {: #tbl-new title="Summary of New Control Operators in this Document, 
 t = target type (left-hand side), c = controller type (right-hand side)"}
 
@@ -128,7 +128,7 @@ then collectively referred to as "strings".
 Text Conversion
 ===============
 
-Byte Strings: Base16 (Hex), Base32, Base45, Base64 {#base}
+Byte Strings: Base 16 (Hex), Base 32, Base 45, Base 64 {#base}
 ----------------------------
 
 A CDDL model often defines data that are byte strings in essence but
@@ -195,28 +195,37 @@ relationship to QR codes and its wide use in health informatics (note
 that base45 is strongly specified not to allow sloppy forms
 of encoding).
 
-Numbers
+Numerals
 -------
 
-| name       | meaning         | reference |
-| `.decimal` | Decimal Integer | ---       |
+| name      | meaning                    | reference |
+| `.base10` | Base-ten (decimal) Integer | ---       |
 {: #tbl-num title="Control Operator for Text Conversion of Integers"}
 
-The control operator `.decimal` allows the modeling of text strings that carry numeric
-information in decimal form, such as in the uint64/int64 formats of
+The control operator `.base10` allows the modeling of text strings
+that carry an integer number in decimal form (as a text string with
+digits in the usual base-ten positional numeral system), such as in the uint64/int64 formats of
 YANG-JSON {{?RFC7951}}.
 
 ~~~ cddl
-yang-json-sid = text .decimal (0..9223372036854775807)
+yang-json-sid = text .base10 (0..9223372036854775807)
 ~~~
-{: sourcecode-name="example2.cddl"}
+{: sourcecode-name="example-base10.cddl"}
 
-Again, the specification is opinionated by only providing integer numbers
-without leading zeros, i.e., the decimal numbers match the regular
+Again, the specification is opinionated by only providing for integer numbers
+and these only represented without leading zeros, i.e., the decimal integer
+numerals match the regular
 expression `0|-?[1-9][0-9]*` (of course, further restricted by the
 control type).
-See the next section for more flexibility, and for octal, hexadecimal,
+See the next section for more flexibility, and for other numeric bases
+such as octal, hexadecimal,
 or binary conversions.
+
+Note that this control operator governs text representations of
+integers and should not be confused with the control operators
+governing text representations of byte strings (`b64u` etc.).
+This contrast is somewhat reinforced by spelling out "base" in the
+name `base10` as opposed to those of the byte string operators.
 
 Printf-style Formatting
 -------
@@ -331,7 +340,7 @@ For example, an IPv4 address in dotted-decimal might be modeled as in
 legacy-ip-address = text .join legacy-ip-address-elements
 legacy-ip-address-elements = [bytetext, ".", bytetext, ".",
                               bytetext, ".", bytetext]
-bytetext = text .decimal byte
+bytetext = text .base10 byte
 byte = 0..255
 ~~~
 {: #fig-join-example sourcecode-name="join-example.cddl"
@@ -410,7 +419,7 @@ This document requests IANA to register the contents of
 | `.hex`         | \[RFC-XXXX] |
 | `.hexlc`       | \[RFC-XXXX] |
 | `.hexuc`       | \[RFC-XXXX] |
-| `.decimal`     | \[RFC-XXXX] |
+| `.base10`      | \[RFC-XXXX] |
 | `.printf`      | \[RFC-XXXX] |
 | `.json`        | \[RFC-XXXX] |
 | `.join`        | \[RFC-XXXX] |
