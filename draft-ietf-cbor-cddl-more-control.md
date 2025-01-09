@@ -457,5 +457,10 @@ the mandates,
 {{{Mikolai Gütschow}}} for improvements to some examples,
 {{{A.J. Stein}}} for serving as shepherd for this document and for his
 shepherd review,
+the IESG and Directorate reviewers (notably
+{{{Ari Keränen}}},
+{{{Darrel Miller}}},
+and
+{{{Éric Vyncke}}}),
 and {{{Orie Steele}}} for serving as responsible AD and for providing a
 detailed AD review.
