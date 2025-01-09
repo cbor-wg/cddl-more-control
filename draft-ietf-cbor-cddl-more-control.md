@@ -144,7 +144,7 @@ this:
 signature-for-json = text .b64u signature
 signature = bytes .cbor COSE_Sign1
 ~~~
-{: sourcecode-name="example1.cddl"}
+{: sourcecode-name="example-b64u.cddl"}
 
 The specification of these control operators is complicated by the
 large number of transformations in use.  Inspired by {{Section 8 of
@@ -292,7 +292,7 @@ This is supported by a control operator similar to `.cbor` as defined in {{Secti
 embedded-claims = text .json claims
 claims = {iss: text, exp: text}
 ~~~
-{: sourcecode-name="example3.cddl"}
+{: sourcecode-name="example-json.cddl"}
 
 Notes:
 
@@ -343,7 +343,7 @@ legacy-ip-address-elements = [bytetext, ".", bytetext, ".",
 bytetext = text .base10 byte
 byte = 0..255
 ~~~
-{: #fig-join-example sourcecode-name="join-example.cddl"
+{: #fig-join-example sourcecode-name="example-join.cddl"
    title="Using the .join operator to build dotted-decimal IPv4 addresses"}
 
 The elements of the controller array need to be strings (text or byte
