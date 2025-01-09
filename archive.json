@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-07T01:04:34.178035+00:00",
+  "timestamp": "2025-01-09T01:03:48.833006+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "next-round",
+      "description": "Examine this issue with the next stack of registrations",
+      "color": "fbca04"
     }
   ],
   "issues": [
@@ -188,10 +193,12 @@
       "author": "mstahl-iis",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "next-round"
+      ],
       "body": "This is the proposal for a new control `.unit` to specify the physical unit of a data field.\r\n\r\n- Should be probably only allowed for numeric types\r\n- Valid units should be at least the ones defined by [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)",
       "createdAt": "2024-11-13T10:00:29Z",
-      "updatedAt": "2024-11-13T11:56:58Z",
+      "updatedAt": "2025-01-08T11:26:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -435,24 +442,26 @@
       "id": "PR_kwDOJHjjSc6GlfA8",
       "title": "(editorial) process IESG feedback from \u00c9ric Vyncke",
       "url": "https://github.com/cbor-wg/cddl-more-control/pull/12",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "<https://mailarchive.ietf.org/arch/msg/cbor/x07Rr0AKGwAQz0cZH7M8clEHXUY>",
       "createdAt": "2025-01-02T14:34:41Z",
-      "updatedAt": "2025-01-05T19:15:57Z",
+      "updatedAt": "2025-01-07T11:50:53Z",
       "baseRepository": "cbor-wg/cddl-more-control",
       "baseRefName": "main",
       "baseRefOid": "bec90531ad35489f17a565cd88fa4b283d080a8d",
       "headRepository": "cbor-wg/cddl-more-control",
       "headRefName": "iesg-ev",
       "headRefOid": "bcfc26a25b7274c310e48251e26e3b8a94794cd3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-07T11:50:52Z",
+      "mergedAt": "2025-01-07T11:50:52Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "c4a100fa4842aa094b6037b034efc538892e5fb4"
+      },
       "comments": [],
       "reviews": []
     },
