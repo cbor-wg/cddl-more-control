@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-09T01:03:48.833006+00:00",
+  "timestamp": "2025-01-12T01:10:19.799384+00:00",
   "repo": "cbor-wg/cddl-more-control",
   "labels": [
     {
@@ -506,6 +506,34 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOJHjjSc6HKqoZ",
+      "title": "Address ARTART review from Darrel Miller (.base10)",
+      "url": "https://github.com/cbor-wg/cddl-more-control/pull/14",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Mail thread starting at:\r\n<https://mailarchive.ietf.org/arch/msg/art/_oD8ONj49dkRpVApuPmMiwNzURg>\r\n",
+      "createdAt": "2025-01-09T07:53:18Z",
+      "updatedAt": "2025-01-09T07:58:56Z",
+      "baseRepository": "cbor-wg/cddl-more-control",
+      "baseRefName": "main",
+      "baseRefOid": "c4a100fa4842aa094b6037b034efc538892e5fb4",
+      "headRepository": "cbor-wg/cddl-more-control",
+      "headRefName": "base10",
+      "headRefOid": "260cab3f9698a7b1f4c31844b3e23734b30a13ce",
+      "closedAt": "2025-01-09T07:58:56Z",
+      "mergedAt": "2025-01-09T07:58:56Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "f33ba7c9384356c8b3ba579bb07abe6c843698e1"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
